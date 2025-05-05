@@ -1,6 +1,13 @@
+require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
-const uri = process.env.COSMOS_DB_CONNECTION_STRING; // Store in .env file
+const uri = process.env.COSMOS_DB_CONNECTION_STRING;
+
+if (!uri) {
+  console.error("Error: COSMOS_DB_CONNECTION_STRING is not defined in the environment variables.");
+  process.exit(1); // Exit the process if the connection string is missing
+}
+
 const client = new MongoClient(uri);
 
 async function connectToDatabase() {
