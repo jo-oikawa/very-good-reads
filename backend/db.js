@@ -14,7 +14,7 @@ async function connectToDatabase() {
   try {
     await client.connect();
     console.log("Connected to Azure Cosmos DB!");
-    return client.db("your-database-name"); // Replace with your database name
+    return client.db("very-good-reads-db"); // Replace with your database name
   } catch (err) {
     console.error("Failed to connect to database", err);
     process.exit(1);

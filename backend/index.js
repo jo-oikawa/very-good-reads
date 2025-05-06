@@ -1,8 +1,12 @@
 const express = require('express');
 const connectToDatabase = require('./db'); // Import the database connection function
+const readingRecordsRouter = require('./routes/readingRecords'); //Import the reading records router for CRUD operations
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Middleware to parse JSON
+app.use(express.json());
 
 // Test database connection
 connectToDatabase().then(() => {
@@ -15,6 +19,9 @@ connectToDatabase().then(() => {
 app.get('/', (req, res) => {
   res.send('Backend is running!');
 });
+
+// Use reading records router
+app.use('/api/reading-records', readingRecordsRouter);
 
 // Start the server
 app.listen(PORT, () => {
