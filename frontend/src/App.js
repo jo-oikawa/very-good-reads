@@ -8,6 +8,9 @@ function App() {
   // Add state for review form
   const [reviewForm, setReviewForm] = useState({ recordId: null, stars: 0, description: '' });
   const [showReviewForm, setShowReviewForm] = useState(false);
+  // Search and filter state
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
 
   // Fetch all reading records
   useEffect(() => {
@@ -138,6 +141,12 @@ function App() {
       .catch((error) => console.error('Error adding review:', error));
   };
 
+  // Open review form for a specific record
+  const openReviewForm = (recordId) => {
+    setReviewForm({ recordId, stars: 0, description: '' });
+    setShowReviewForm(true);
+  };
+
   // Handle star rating change
   const handleStarRatingChange = (value) => {
     setReviewForm({ ...reviewForm, stars: value });
@@ -147,6 +156,37 @@ function App() {
   const renderStarRating = (rating) => {
     return `★`.repeat(Math.floor(rating)) + (rating % 1 ? '½' : '') + `☆`.repeat(5 - Math.ceil(rating));
   };
+
+  // Get filtered records based on search term and status filter
+  const getFilteredRecords = () => {
+    // If no search term and no status filter, return all records
+    if (!searchTerm && !statusFilter) {
+      return records;
+    }
+
+    return records.filter(record => {
+      // Check if record matches status filter (if any)
+      const matchesStatus = !statusFilter || record.status === statusFilter;
+      
+      // Check if record matches search term (if any)
+      const matchesSearch = !searchTerm || 
+        record.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        record.author.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        (record.notes && record.notes.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (record.format && record.format.toLowerCase().includes(searchTerm.toLowerCase()));
+      
+      // Return true only if both conditions are met
+      return matchesStatus && matchesSearch;
+    });
+  };
+
+  // Clear search and filters
+  const clearFilters = () => {
+    setSearchTerm('');
+    setStatusFilter('');
+  };
+
+  const filteredRecords = getFilteredRecords();
 
   return (
     <div className="App">
@@ -234,9 +274,30 @@ function App() {
           </div>
         )}
 
+        {/* Search and filter controls */}
+        <div className="search-filter-controls">
+          <input
+            type="text"
+            placeholder="Search by title, author, notes, or format"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
+            <option value="">All Statuses</option>
+            <option value="to-read">To-Read</option>
+            <option value="reading">Reading</option>
+            <option value="read">Read</option>
+            <option value="did-not-finish">Did Not Finish</option>
+          </select>
+          <button onClick={clearFilters}>Clear Filters</button>
+        </div>
+
         {/* Display reading records */}
         <ul>
-          {records.map((record) => (
+          {filteredRecords.map((record) => (
             <li key={record._id}>
               <strong>{record.title}</strong> by {record.author} ({record.format})
               <p>{record.notes}</p>
@@ -265,6 +326,11 @@ function App() {
                   <option value="read">Read</option>
                   <option value="did-not-finish">Did Not Finish</option>
                 </select>
+              )}
+              
+              {/* Add Review button for read records without reviews */}
+              {record.status === 'read' && !record.review && (
+                <button onClick={() => openReviewForm(record._id)}>Add Review</button>
               )}
               
               <button onClick={() => handleDelete(record._id)}>Delete</button>
