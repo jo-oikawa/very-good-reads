@@ -8,11 +8,16 @@ const PORT = process.env.PORT || 3000;
 // Middleware to parse JSON
 app.use(express.json());
 
-// Test database connection
-connectToDatabase().then(() => {
-  console.log('Database connection successful');
-}).catch(err => {
-  console.error('Database connection failed:', err);
+// Add CORS middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
 });
 
 // Basic route
@@ -23,7 +28,24 @@ app.get('/', (req, res) => {
 // Use reading records router
 app.use('/api/reading-records', readingRecordsRouter);
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Connect to database and start server
+connectToDatabase()
+  .then(() => {
+    console.log('Database connection successful');
+    // Start the server after successful database connection
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+      console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    });
+  })
+  .catch(err => {
+    console.error('Database connection failed:', err);
+    console.log('Server will start but may not function correctly without database connection.');
+    
+    // Still start server even if DB fails, so we can see error messages
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+      console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log('WARNING: Database connection failed, API functionality will be limited');
+    });
+  });

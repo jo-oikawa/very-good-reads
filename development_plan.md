@@ -116,4 +116,37 @@ This development plan breaks down the deliverables and timeline into functional 
 
 ---
 
-This plan ensures a structured approach to development, with clear milestones and exit criteria for each phase. By following this plan, the project will deliver a functional prototype ready for hosting or demo purposes.
+## Data Structure
+### Data Structure
+
+```json
+{
+  "readingRecords": [
+    {
+      "id": "unique-record-id",
+      "title": "string",
+      "author": "string",
+      "format": "string",
+      "status": "string",
+      "note": "string",
+      "tags": ["string"],
+      "review": {
+        "stars": "number",
+        "description": "string"
+      },
+      "createdAt": "ISO 8601 timestamp",
+      "updatedAt": "ISO 8601 timestamp"
+    }
+  ]
+}
+```
+
+### Definitions
+- **`id`**: A unique identifier for each reading record.
+- **`title`** and **`author`**: Basic metadata about the reading material.
+- **`format`**: Specifies the type of material (e.g., audiobook, physical book, article).
+- **`status`**: Tracks the reading progress (`to-read` by default, `completed`, or `did-not-finish`).
+- **`note`**: A user-provided note when adding the record, which can be expanded in the future to include tags.
+- **`tags`**: An optional array for categorizing records (e.g., "work", "fiction").
+- **`review`**: Contains a star rating (supports quarter increments) and an optional description for completed records.
+- **`createdAt`** and **`updatedAt`**: Timestamps for tracking when the record was created or last modified.

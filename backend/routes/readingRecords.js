@@ -9,7 +9,7 @@ const connectToDatabase = require('../db');
 router.post('/', async (req, res) => {
     const db = await connectToDatabase();
     const collection = db.collection('readingRecords');
-    const record = req.body;
+    const record = { ...req.body, status: req.body.status || 'to-read' }; // Default status to 'to-read'
 
     try {
         const result = await collection.insertOne(record);
@@ -62,6 +62,30 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// Update the status of a reading record (e.g., mark as "to-read")
+router.put('/:id/status', async (req, res) => {
+    const db = await connectToDatabase();
+    const collection = db.collection('readingRecords');
+    const { id } = req.params;
+    const { status } = req.body;
+
+    try {
+        const result = await collection.updateOne(
+            { _id: new ObjectId(id) },
+            { $set: { status } }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(404).send({ error: 'Record not found' });
+        }
+
+        const updatedRecord = await collection.findOne({ _id: new ObjectId(id) });
+        res.status(200).send(updatedRecord);
+    } catch (err) {
+        res.status(500).send({ error: 'Failed to update status' });
+    }
+});
+
 // Delete a reading record
 router.delete('/:id', async (req, res) => {
     const db = await connectToDatabase();
@@ -73,6 +97,32 @@ router.delete('/:id', async (req, res) => {
         res.status(200).send(result);
     } catch (err) {
         res.status(500).send({ error: 'Failed to delete record' });
+    }
+});
+
+// Add support for reviews
+
+// Add a review to a reading record
+router.post('/:id/review', async (req, res) => {
+    const db = await connectToDatabase();
+    const collection = db.collection('readingRecords');
+    const { id } = req.params;
+    const review = req.body;
+
+    try {
+        const result = await collection.updateOne(
+            { _id: new ObjectId(id) },
+            { $set: { review } }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(404).send({ error: 'Record not found' });
+        }
+
+        const updatedRecord = await collection.findOne({ _id: new ObjectId(id) });
+        res.status(200).send(updatedRecord);
+    } catch (err) {
+        res.status(500).send({ error: 'Failed to add review' });
     }
 });
 
