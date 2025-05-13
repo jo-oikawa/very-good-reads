@@ -4,9 +4,21 @@
   height: 100vh;
   overflow: hidden;
   position: relative;
-  background-color: #008080; /* Classic Windows 95 teal background */
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23009B9B' fill-opacity='0.3' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zM17.17 0l2.83 2.83-1.41 1.41L15.76 1.41V0h1.41zM34.93 0l2.83 2.83-1.41 1.41L33.52 1.41V0h1.41zM15.76 38.59l2.83-2.83 1.41 1.41-4.24 4.24h-1.41v-1.41l1.41-1.41zM33.52 38.59l2.83-2.83 1.41 1.41-4.24 4.24h-1.41v-1.41l1.41-1.41zM20 15.76l2.83-2.83 1.41 1.41L21.41 17h-1.41v-1.24zM0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM17.17 0l2.83 2.83-1.41 1.41L15.76 1.41V0h1.41zM34.93 0l2.83 2.83-1.41 1.41L33.52 1.41V0h1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zM15.76 38.59l2.83-2.83 1.41 1.41-4.24 4.24h-1.41v-1.41l1.41-1.41zM33.52 38.59l2.83-2.83 1.41 1.41-4.24 4.24h-1.41v-1.41l1.41-1.41zM0 34.93l2.83-2.83 1.41 1.41L1.41 36.34H0v-1.41zm0-17.17l2.83-2.83 1.41 1.41L1.41 19.17H0v-1.41zM17.17 20l2.83 2.83-1.41 1.41L15.76 21.41V20h1.41zM0 17.17l2.83-2.83 1.41 1.41L1.41 18.59H0v-1.42zm0-17.17l2.83-2.83 1.41 1.41L1.41 1.41H0V0zm17.17 0l2.83 2.83-1.41 1.41L15.76 1.41V0h1.41zm17.17 0l2.83 2.83-1.41 1.41L33.52 1.41V0h1.41zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zm17.17 17.17l2.83 2.83-1.41 1.41L15.76 21.65V20h1.41z'/%3E%3C/g%3E%3C/svg%3E");
-  font-family: 'MS Sans Serif', Arial, sans-serif;
+  /* Grid overlay for neobrutalist/vaporwave style */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+    linear-gradient(
+      135deg, 
+      var(--pink-1) 0%, 
+      var(--purple-2) 20%,
+      var(--blue-3) 40%,
+      var(--green-2) 60%, 
+      var(--yellow-2) 80%, 
+      var(--orange-3) 100%
+    );
+  background-size: 40px 40px, 40px 40px, 100% 100%;
+  font-family: 'Instrument Sans', Arial, sans-serif;
   color: #000;
 }
 

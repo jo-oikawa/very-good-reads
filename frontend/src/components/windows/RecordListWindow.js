@@ -56,7 +56,7 @@ const RecordListWindow = ({
               {records.map((record) => (
                 <li key={record._id} className="book-record-item">
                   <div className="book-record-header">
-                    <h3>{record.title}</h3>
+                    <h3 className="book-title">{record.title}</h3>
                     <div className="book-record-controls">
                       <button 
                         className="win95-button small" 

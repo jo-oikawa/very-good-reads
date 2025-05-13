@@ -20,10 +20,10 @@ const CurrentReadingWindow = ({ records }) => {
           <div className="reading-books">
             {currentlyReading.map(book => (
               <div key={book._id} className="reading-book-card">
-                <h3>{book.title}</h3>
+                <h3 className="book-title">{book.title}</h3>
                 <p className="book-author">by {book.author}</p>
                 <div className="book-details">
-                  <p><strong>Format:</strong> {book.format}</p>
+                  <p className="book-format">Format: {book.format}</p>
                   {book.notes && <p className="book-notes">{book.notes}</p>}
                 </div>
               </div>
