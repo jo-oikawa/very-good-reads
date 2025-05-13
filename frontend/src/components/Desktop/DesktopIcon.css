@@ -2,55 +2,76 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80px;
-  height: 90px;
-  margin: 12px;
+  width: 100px; /* Wider for better spacing */
+  height: auto; /* Allow height to adjust based on content */
+  margin: 16px;
   cursor: pointer;
   user-select: none;
+  transition: transform 0.2s;
+}
+
+.desktop-icon:hover {
+  transform: translateY(-5px);
+}
+
+.desktop-icon:active {
+  transform: translateY(0);
 }
 
 .desktop-icon-image {
-  width: 48px;
-  height: 48px;
+  width: 64px; /* Larger icons */
+  height: 64px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5px;
-  color: #000080; /* Windows 95 icon blue */
+  margin-bottom: 10px;
+  color: #000000; /* Black icons for contrast */
+  border: 3px solid black; /* Thick border around icons */
+  background-color: #ffffff;
+  padding: 8px;
 }
 
 .desktop-icon-image svg {
-  width: 32px;
-  height: 32px;
+  width: 40px; /* Larger icons */
+  height: 40px;
 }
 
 .desktop-icon-label {
-  background-color: #008080; /* Match desktop background */
-  color: white;
-  font-size: 12px;
+  background-color: #000000; /* Black background */
+  color: #ffffff;
+  font-size: 10px; /* Smaller text to fit better */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   text-align: center;
   width: 100%;
-  padding: 2px;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+  padding: 6px 8px; /* More padding */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  border: 2px solid black;
 }
 
 /* Selected icon state */
-.desktop-icon:active .desktop-icon-image,
-.desktop-icon:active .desktop-icon-label {
-  transform: scale(0.95);
+.desktop-icon.selected .desktop-icon-image {
+  background-color: #ffdd00; /* Highlight selected icon */
+  transform: translate(-2px, -2px);
+}
+
+.desktop-icon.selected .desktop-icon-label {
+  background-color: #ffdd00; /* Matching highlight color */
+  color: #000000;
 }
 
 /* Icon container for positioning icons */
 .desktop-icons-container {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 20px; /* More spacing from edges */
+  left: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 16px; /* Spacing between icons */
   z-index: 1;
 }

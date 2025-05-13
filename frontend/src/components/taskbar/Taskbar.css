@@ -1,86 +1,111 @@
-/* Windows 95 styled taskbar */
+/* Neo-brutalist styled taskbar */
 .taskbar {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 30px;
-  background-color: #c0c0c0;
-  border-top: 2px solid #ffffff;
+  height: 48px; /* Taller taskbar */
+  background-color: var(--purple-3); /* Purple accent color */
+  border-top: 4px solid #000000; /* Thick border */
   display: flex;
   z-index: 1000;
 }
 
 /* Start button container */
 .start-button {
-  padding: 2px;
+  padding: 4px;
   position: relative;
 }
 
 /* Start button */
 .start-button-inner {
-  height: 24px;
-  padding: 0 10px;
-  font-weight: bold;
-  font-size: 12px;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  background-color: #c0c0c0;
+  height: 36px; /* Reduced height to fit taskbar */
+  padding: 0 16px;
+  font-weight: 900; /* Extra bold */
+  font-size: 16px; /* Larger text */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 3px solid black; /* Thick border */
+  background-color: var(--yellow-2); /* Using yellow from color palette */
   display: flex;
   align-items: center;
   cursor: pointer;
+  /* Box shadow removed */
+  transition: transform 0.1s;
 }
 
 /* Start button active/pressed state */
 .start-button-inner.active {
-  border-color: #808080 #ffffff #ffffff #808080;
-  background-color: #c0c0c0;
+  transform: translate(2px, 2px);
+  background-color: var(--yellow-3); /* Darker yellow when active */
+}
+
+/* Start button hover state */
+.start-button-inner:hover:not(.active) {
+  background-color: var(--yellow-3); /* Darker yellow on hover */
 }
 
 /* Taskbar buttons container */
 .taskbar-buttons {
   flex: 1;
   display: flex;
-  padding: 2px;
-  gap: 2px;
+  padding: 4px;
+  gap: 8px; /* More spacing between buttons */
   overflow-x: auto;
 }
 
 /* Individual taskbar buttons (for minimized windows) */
 .taskbar-button {
-  min-width: 100px;
-  max-width: 150px;
-  height: 24px;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  background-color: #c0c0c0;
-  font-size: 12px;
-  padding: 0 5px;
+  min-width: 120px; /* Wider buttons */
+  max-width: 200px;
+  height: 36px; /* Reduced height to fit taskbar */
+  border: 3px solid black; /* Thick border */
+  background-color: #ffffff;
+  font-size: 14px; /* Larger text */
+  font-weight: bold;
+  padding: 0 12px;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  /* Box shadow removed */
+  transition: transform 0.1s;
+}
+
+/* Active taskbar button */
+.taskbar-button.active {
+  background-color: var(--yellow-2); /* Match the start button */
+}
+
+/* Hover effect */
+.taskbar-button:hover:not(.active) {
+  background-color: var(--blue-1); /* Light blue on hover */
 }
 
 /* Pressed button effect */
 .taskbar-button:active {
-  border-color: #808080 #ffffff #ffffff #808080;
+  transform: translate(2px, 2px);
+  /* Box shadow removed */
 }
 
 /* Taskbar tray with clock etc */
 .taskbar-tray {
   display: flex;
   align-items: center;
-  padding: 2px 5px;
-  border-left: 1px solid #808080;
+  padding: 4px 12px;
+  border-left: 3px solid #ffffff; /* Thicker separator */
 }
 
 /* Clock in the taskbar */
 .taskbar-time {
-  background-color: #c0c0c0;
-  border: 1px inset #808080;
-  padding: 0 5px;
-  font-size: 12px;
-  line-height: 22px;
+  background-color: var(--blue-1); /* Light blue background */
+  border: 3px solid black; /* Thick border */
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 28px; /* Reduced height for clock */
+  /* Box shadow removed */
 }

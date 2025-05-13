@@ -20,12 +20,13 @@ const RecordListWindow = ({
         <h2>Book Collection</h2>
         
         {/* Search and filter controls */}
-        <div className="search-filter-controls">
+        <div className="search-filter-controls" style={{ backgroundColor: 'var(--green-4)' }}>
           <input
             type="text"
             placeholder="Search by title, author, notes, or format"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            style={{ width: '300px' }}
           />
           <select
             value={statusFilter}
@@ -37,7 +38,18 @@ const RecordListWindow = ({
             <option value="read">Read</option>
             <option value="did-not-finish">Did Not Finish</option>
           </select>
-          <button className="win95-button" onClick={clearFilters}>Clear Filters</button>
+          <button 
+            className="win95-button" 
+            onClick={clearFilters}
+            style={{ 
+              backgroundColor: 'var(--green-1)',
+              transition: 'background-color 0.2s'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--green-3)'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'var(--green-1)'}
+          >
+            Clear Filters
+          </button>
         </div>
         
         {/* Book list */}
@@ -59,7 +71,7 @@ const RecordListWindow = ({
                     <h3 className="book-title">{record.title}</h3>
                     <div className="book-record-controls">
                       <button 
-                        className="win95-button small" 
+                        className="win95-button small delete" 
                         onClick={() => handleDelete(record._id)}
                       >
                         Delete
@@ -71,45 +83,44 @@ const RecordListWindow = ({
                   <p className="book-format">Format: {record.format}</p>
                   {record.notes && <p className="book-notes">Notes: {record.notes}</p>}
                   
-                  <div className="book-status">
-                    <span>Status: {record.status}</span>
-                    
-                    {/* Show status dropdown only if record doesn't have a review */}
-                    {!record.review && (
-                      <select
-                        value={record.status}
-                        onChange={(e) => handleStatusChange(record._id, e.target.value)}
-                        className="status-dropdown"
-                      >
-                        <option value="to-read">To-Read</option>
-                        <option value="reading">Reading</option>
-                        <option value="read">Read</option>
-                        <option value="did-not-finish">Did Not Finish</option>
-                      </select>
-                    )}
-                  </div>
-                  
-                  {/* Display star rating if review exists */}
+                  {/* Review display */}
                   {record.review && (
                     <div className="review-display">
-                      <p className="star-rating-display">
-                        Rating: {renderStarRating(record.review.stars)} ({record.review.stars})
-                      </p>
+                      <div className="star-rating-display">
+                        Rating: <span style={{ display: 'inline-flex', alignItems: 'center', marginLeft: '8px' }}>
+                          {renderStarRating(record.review.stars)}
+                        </span>
+                      </div>
                       {record.review.description && (
-                        <p className="review-text">{record.review.description}</p>
+                        <div className="review-text">{record.review.description}</div>
                       )}
                     </div>
                   )}
                   
-                  {/* Add Review button for read records without reviews */}
-                  {record.status === 'read' && !record.review && (
-                    <button 
-                      className="win95-button" 
-                      onClick={() => openReviewForm(record._id)}
-                    >
-                      Add Review
-                    </button>
-                  )}
+                  <div className="book-status">
+                    <div>
+
+                      <select
+                        className="status-dropdown"
+                        value={record.status}
+                        onChange={(e) => handleStatusChange(record._id, e.target.value)}
+                      >
+                        <option value="to-read">To Read</option>
+                        <option value="reading">Currently Reading</option>
+                        <option value="read">Read</option>
+                      </select>
+                    </div>
+                    
+                    {/* Add review button */}
+                    {record.status === 'read' && !record.review && (
+                      <button 
+                        className="win95-button small" 
+                        onClick={() => openReviewForm(record._id)}
+                      >
+                        Add Review
+                      </button>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>

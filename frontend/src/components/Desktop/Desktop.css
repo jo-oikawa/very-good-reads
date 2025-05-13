@@ -4,6 +4,8 @@
   height: 100vh;
   overflow: hidden;
   position: relative;
+  /* Neo-brutalist background with gradient and white grid overlay */
+  background-color: var(--purple-1);
   /* Grid overlay for neobrutalist/vaporwave style */
   background-image: 
     linear-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px),
@@ -28,10 +30,11 @@
   left: 0;
   width: 100%;
   /* Height is 100% minus taskbar height */
-  height: calc(100% - 30px); 
+  height: calc(100% - 48px); /* Increased taskbar height */
+  padding: 20px; /* Add some padding for elements to breathe */
 }
 
-/* Global styles for the retro UI */
+/* Global styles for the neo-brutalist UI */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -44,26 +47,55 @@ button {
   cursor: pointer;
 }
 
-/* Desktop icons styling if needed */
+/* Desktop icons styling with neo-brutalist approach */
 .desktop-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
-  text-shadow: 1px 1px 2px black;
+  color: #000000; /* Black text for contrast */
   cursor: pointer;
-  width: 75px;
-  margin: 10px;
+  width: 100px; /* Wider for better spacing */
+  margin: 16px;
   text-align: center;
+  border: 3px solid transparent; /* For selected state */
+  padding: 10px;
+  transition: transform 0.2s;
 }
 
-.desktop-icon img {
-  width: 32px;
-  height: 32px;
-  margin-bottom: 5px;
+.desktop-icon:hover {
+  transform: translateY(-5px);
+}
+
+.desktop-icon:active {
+  transform: translateY(0);
+}
+
+.desktop-icon-image {
+  width: 48px; /* Larger icons */
+  height: 48px;
+  margin-bottom: 10px;
+  border: 3px solid black; /* Thick border around icons */
+  padding: 6px;
+  background-color: var(--blue-1); /* Light blue background for icons */
 }
 
 .desktop-icon-label {
-  font-size: 12px;
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
   user-select: none;
+  letter-spacing: 0.05em;
+  margin-top: 8px;
+  background-color: var(--purple-3); /* Purple accent color */
+  color: #ffffff;
+  padding: 8px 10px;
 }
+
+/* Icon container for positioning icons */
+.desktop-icons-container {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}   

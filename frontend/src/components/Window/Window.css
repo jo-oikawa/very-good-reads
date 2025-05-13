@@ -1,96 +1,115 @@
-/* Windows 95-style window component */
+/* Windows neo-brutalist style window component */
 .window {
   position: absolute;
-  background-color: #c0c0c0;
-  border: 3px solid;
-  border-color: #dfdfdf #000000 #000000 #dfdfdf;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+  border: 5px solid black; /* Thick, black border */
+  box-shadow: 12px 12px 0px #000000; /* Harsh, offset shadow */
   min-width: 300px;
   min-height: 200px;
+  /* Set max-width to 2/3rds of viewport for desktop screens */
+  max-width: 100%;
   border-radius: 0;
   font-family: 'MS Sans Serif', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transform-origin: top left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Media query for desktop-sized screens or larger */
+@media screen and (min-width: 768px) {
+  .window {
+    max-width: 66.667vw; /* 2/3rds of the viewport width */
+  }
+}
+
+/* Window hover effect */
+.window:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 14px 14px 0px #000000;
 }
 
 /* Window header */
 .window-header {
-  height: 28px;
-  background: linear-gradient(to right, #000080, #1084d0);
+  height: 40px; /* Taller header */
+  background: var(--purple-3); /* Purple accent color for headers */
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 4px 0 4px;
+  padding: 0 8px;
   cursor: grab;
   user-select: none;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 16px; /* Bigger font size */
+  font-weight: 900; /* Bolder text */
+  text-transform: uppercase; /* More utilitarian look */
+  letter-spacing: 0.05em;
 }
 
-/* Active window header has blue accent color */
+/* Active window header has bright accent color */
 .window-header-active {
-  background: linear-gradient(to right, #000080, #1084d0);
+  background: var(--purple-4); /* Darker purple for active windows */
+  color: white;
 }
 
-/* Inactive window header has gray color */
+/* Inactive window header */
 .window-header:not(.window-header-active) {
-  background: linear-gradient(to right, #808080, #a0a0a0);
+  background: var(--purple-2); /* Lighter purple for inactive */
 }
 
 /* Window title */
 .window-title {
-  padding-left: 4px;
+  padding-left: 8px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 18px; /* Oversized font */
 }
 
 /* Window controls (min/max/close buttons) */
 .window-controls {
   display: flex;
-  gap: 2px;
+  gap: 6px; /* More spacing between controls */
 }
 
 /* Individual window control buttons */
 .window-control {
-  width: 20px;
-  height: 20px;
-  background-color: #c0c0c0;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
+  width: 28px; /* Larger controls */
+  height: 28px; /* Larger controls */
+  background-color: var(--yellow-2); /* Using yellow from color palette */
+  border: 3px solid black; /* Thick border */
   color: black;
-  font-size: 12px;
+  font-size: 16px; /* Larger font */
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: transform 0.1s;
 }
 
 /* Button hover effect */
 .window-control:hover {
-  background-color: #d0d0d0;
+  background-color: var(--yellow-3); /* Darker yellow on hover */
 }
 
 /* Button active (pressed) effect */
 .window-control:active {
-  border-color: #808080 #ffffff #ffffff #808080;
+  transform: scale(0.9);
+  background-color: var(--yellow-4); /* Even darker when pressed */
 }
 
 /* Window content area */
 .window-content {
   flex: 1;
-  padding: 10px;
+  padding: 20px; /* Increased padding */
   overflow: auto;
   background-color: #ffffff;
-  border: 2px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
   /* Add more styling as needed */
 }
 
-/* Active window has a more pronounced border */
+/* Active window has a more pronounced appearance */
 .window-active {
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+  z-index: 100; /* Ensure active window is on top */
 }

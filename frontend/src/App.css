@@ -21,55 +21,77 @@ body {
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px; /* Increased spacing */
   width: 100%;
+  padding: 16px; /* Added padding for breathing space */
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px; /* Increased spacing */
 }
 
 label {
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 900; /* Extra bold for brutalist style */
+  text-transform: uppercase; /* More utilitarian look */
+  letter-spacing: 0.05em;
 }
 
-/* Windows 95 style inputs */
+/* Neo-brutalist style inputs */
 input, textarea, select {
-  border: 2px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
+  border: 4px solid black; /* Thick black border */
   background-color: #ffffff;
-  padding: 4px;
+  padding: 12px;
   font-family: 'MS Sans Serif', Arial, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
+  transition: transform 0.1s, box-shadow 0.1s;
 }
 
 input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: #000000;
+  border-color: var(--purple-3); /* Accent color for focus state */
+  transform: translate(2px, 2px);
+  box-shadow: 6px 6px 0px #000000;
 }
 
-/* Windows 95 style buttons */
+/* Neo-brutalist style buttons */
 .win95-button {
-  padding: 4px 8px;
-  background-color: #c0c0c0;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 12px 20px;
+  border: 4px solid black;
+  background-color: var(--yellow-2); /* Using yellow from color palette */
   font-family: 'MS Sans Serif', Arial, sans-serif;
-  font-size: 12px;
-  margin: 2px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 4px;
   cursor: pointer;
+  /* box-shadow: 6px 6px 0px #000000; */
+  transition: transform 0.1s, box-shadow 0.1s;
 }
 
 .win95-button:active {
-  border-color: #808080 #ffffff #ffffff #808080;
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.win95-button:hover:not(:active) {
+  background-color: var(--green-1);
 }
 
 .win95-button.small {
-  font-size: 10px;
-  padding: 2px 4px;
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+/* Delete button - removing yellow background */
+.win95-button.delete {
+  background-color: #ffffff;
+}
+
+.win95-button.delete:hover:not(:active) {
+  background-color: var(--pink-2);
 }
 
 /* Review form modal */
@@ -87,45 +109,96 @@ input:focus, textarea:focus, select:focus {
 }
 
 .review-form-content {
-  background-color: #c0c0c0;
-  border: 3px solid;
-  border-color: #dfdfdf #000000 #000000 #dfdfdf;
+  background-color: #ffffff;
+  /* border: 6px solid black; Thick black border */
   width: 90%;
-  max-width: 450px;
-  padding: 2px;
+  max-width: 500px;
+  padding: 4px;
+  box-shadow: 12px 12px 0px #000000;
 }
 
 .review-form-content form {
-  background-color: #c0c0c0;
-  padding: 10px;
+  background-color: #ffffff;
+  padding: 20px;
 }
 
 .review-form-content h2 {
-  height: 28px;
-  background: linear-gradient(to right, #000080, #1084d0);
+  height: auto;
+  background-color: var(--purple-3); /* Using purple as secondary accent */
   color: white;
-  padding: 4px;
-  font-size: 14px;
-  font-weight: bold;
+  padding: 16px;
+  font-size: 24px; /* Oversized font */
+  font-weight: 900; /* Extra bold */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Star rating controls */
 .stars {
   display: flex;
-  gap: 2px;
-  margin: 10px 0;
+  flex-direction: row-reverse; /* Reversed for hover effect */
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+  height: 48px;
+  justify-content: flex-end;
 }
 
 .stars button {
   background: none;
   border: none;
-  font-size: 18px;
-  color: #ccc;
   cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 44px;
+  transition: transform 0.1s;
 }
 
-.stars button.active {
+.stars button:hover {
+  transform: scale(1.1);
+}
+
+/* Star icon styling - targeting both direct SVG and ReactComponent wrapper */
+.star-icon,
+.star {
+  width: 40px;
+  height: 40px;
+  color: #ccc; /* Using color for SVGs with currentColor */
+  fill: #ccc; /* Using fill as backup */
+  transition: color 0.2s ease, fill 0.2s ease;
+}
+
+/* Hover effect for rating stars */
+.stars button:hover .star-icon,
+.stars button:hover ~ button .star-icon {
   color: gold;
+  fill: gold;
+}
+
+/* Active (clicked) stars */
+.stars button.active .star-icon {
+  color: gold !important;
+  fill: gold !important;
+}
+
+/* Rated stars for display */
+.star.filled {
+  color: gold;
+  fill: gold;
+}
+
+.star.empty {
+  color: #ccc;
+  fill: #ccc;
+}
+
+/* Fix for star display in reviews */
+.star-rating-display .star {
+  color: gold;
+  fill: gold;
 }
 
 /* Custom styling for specific components */
@@ -141,13 +214,20 @@ input:focus, textarea:focus, select:focus {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 24px; /* Increased spacing */
 }
 
 .book-record-item {
-  background-color: #f0f0f0;
-  border: 1px solid #d0d0d0;
-  padding: 10px;
+  background-color: #ffffff;
+  border: 4px solid black; /* Thick black border */
+  padding: 20px;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.book-record-item:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 6px 6px 0px #000000;
+  border-color: var(--purple-3); /* Accent color on hover */
 }
 
 .book-record-header {
@@ -157,74 +237,108 @@ input:focus, textarea:focus, select:focus {
 }
 
 .book-author, .book-format, .book-notes {
-  margin-top: 5px;
-  font-size: 12px;
+  margin-top: 12px; /* Increased spacing */
+  font-size: 14px;
+  line-height: 1.5; /* Better readability */
+}
+
+/* Updated book-notes styling - removed padding */
+.book-notes {
+  font-style: italic;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
 }
 
 .book-status {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
-  font-size: 12px;
-}
-
-.status-dropdown {
-  font-size: 11px;
-  height: 20px;
-}
-
-.review-display {
-  margin-top: 8px;
-  padding: 8px;
-  background-color: #e0e0e0;
-  border: 1px solid #d0d0d0;
-}
-
-.star-rating-display {
-  color: #333;
+  margin-top: 20px; /* Increased spacing */
   font-size: 14px;
 }
 
+.status-dropdown {
+  font-size: 14px;
+  height: auto;
+  padding: 8px;
+  border: 3px solid black;
+}
+
+.review-display {
+  margin-top: 16px;
+  padding: 16px;
+  background-color: var(--blue-1); /* Light blue background for reviews */
+  border: 3px solid black; /* Thick black border */
+}
+
+.star-rating-display {
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex; /* Added flex to align items */
+  align-items: center; /* Center vertically */
+}
+
 .review-text {
-  margin-top: 5px;
+  margin-top: 10px;
   font-style: italic;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 /* Empty state message */
 .empty-state {
   text-align: center;
-  padding: 20px;
-  color: #666;
+  padding: 32px; /* Increased spacing */
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 4px solid black;
+  margin: 24px;
+  background-color: var(--pink-1); /* Light pink for empty states */
 }
 
 /* Search and filter controls */
 .search-filter-controls {
   display: flex;
-  gap: 5px;
-  margin-bottom: 15px;
+  gap: 16px; /* Increased spacing */
+  margin-bottom: 24px;
   align-items: center;
   flex-wrap: wrap;
+  padding: 16px;
+  border: 4px solid black;
+  background-color: var(--green-1); /* Light green background */
 }
 
 /* Adjustments for the current-reading-window */
 .reading-book-card {
-  background-color: #f0f0f0;
-  border: 1px solid #d0d0d0;
-  padding: 10px;
-  margin-bottom: 10px;
+  background-color: var(--blue-1); /* Light blue background */
+  border: 4px solid black; /* Thick black border */
+  padding: 24px; /* Increased padding */
+  margin-bottom: 24px;
 }
 
 /* Window content scrolling */
 .window-content {
   overflow-y: auto;
   max-height: calc(100vh - 100px);
+  padding: 16px; /* Added padding */
 }
 
 /* Headings inside windows */
 .window-content h2 {
-  margin-bottom: 15px;
-  color: #000080;
-  font-size: 16px;
+  margin-bottom: 24px; /* Increased spacing */
+  color: var(--purple-3); /* Purple accent color for headings */
+  font-size: 32px; /* Oversized font */
+  font-weight: 900; /* Extra bold */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 4px solid black;
+  padding-bottom: 8px;
 }

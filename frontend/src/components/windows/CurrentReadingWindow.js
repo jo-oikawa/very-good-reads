@@ -1,10 +1,17 @@
 import React from 'react';
 import Window from '../Window/Window';
 import { WINDOW_TYPES } from '../../context/WindowContext';
+import './CurrentReadingWindow.css';
 
-const CurrentReadingWindow = ({ records }) => {
+const CurrentReadingWindow = ({ records, handleStatusChange = () => {}, openReviewForm = () => {} }) => {
   // Filter to show only books with "reading" status
   const currentlyReading = records.filter(record => record.status === 'reading');
+  
+  // Function to mark a book as read and open the review form
+  const handleMarkAsRead = (book) => {
+    handleStatusChange(book._id, 'read');
+    openReviewForm(book._id);
+  };
   
   return (
     <Window id={WINDOW_TYPES.CURRENT_READING}>
@@ -25,6 +32,14 @@ const CurrentReadingWindow = ({ records }) => {
                 <div className="book-details">
                   <p className="book-format">Format: {book.format}</p>
                   {book.notes && <p className="book-notes">{book.notes}</p>}
+                </div>
+                <div className="book-actions">
+                  <button 
+                    className="win95-button small"
+                    onClick={() => handleMarkAsRead(book)}
+                  >
+                    Mark as Read
+                  </button>
                 </div>
               </div>
             ))}

@@ -5,6 +5,8 @@ import Desktop from './components/Desktop/Desktop';
 import AddRecordWindow from './components/windows/AddRecordWindow';
 import CurrentReadingWindow from './components/windows/CurrentReadingWindow';
 import RecordListWindow from './components/windows/RecordListWindow';
+// Import the star SVG
+import { ReactComponent as StarIcon } from './assets/icons/star.svg';
 
 function App() {
   const [records, setRecords] = useState([]);
@@ -159,7 +161,17 @@ function App() {
 
   // Render star rating display
   const renderStarRating = (rating) => {
-    return `★`.repeat(Math.floor(rating)) + (rating % 1 ? '½' : '') + `☆`.repeat(5 - Math.ceil(rating));
+    // Create an array of 5 elements and map through them
+    return Array(5).fill(0).map((_, i) => {
+      // For each position, check if we should render a filled star, half star, or empty star
+      if (i < Math.floor(rating)) {
+        return <StarIcon key={i} className="star filled" />;
+      } else if (i === Math.floor(rating) && rating % 1) {
+        return <StarIcon key={i} className="star half" />;
+      } else {
+        return <StarIcon key={i} className="star empty" />;
+      }
+    });
   };
 
   // Get filtered records based on search term and status filter
@@ -205,7 +217,11 @@ function App() {
           />
           
           {/* Current Reading Window */}
-          <CurrentReadingWindow records={records} />
+          <CurrentReadingWindow 
+            records={records} 
+            handleStatusChange={handleStatusChange} 
+            openReviewForm={openReviewForm}
+          />
           
           {/* Record List Window */}
           <RecordListWindow 
@@ -226,23 +242,23 @@ function App() {
         {showReviewForm && (
           <div className="review-form-modal">
             <div className="review-form-content">
-              <h2>Add Your Review</h2>
+              <h2>Add Review</h2>
               <form onSubmit={handleReviewSubmit}>
                 <div className="star-rating">
-                  <p>Rate this book:</p>
+                  <p>Rate "{records.find(record => record._id === reviewForm.recordId)?.title || 'this book'}":</p>
                   <div className="stars">
-                    {[0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].map((star) => (
+                    {[5, 4, 3, 2, 1].map((star) => (
                       <button
                         key={star}
                         type="button"
                         className={reviewForm.stars >= star ? 'active' : ''}
                         onClick={() => handleStarRatingChange(star)}
                       >
-                        {star % 1 ? '½' : '★'}
+                        <StarIcon className="star-icon" />
                       </button>
                     ))}
                   </div>
-                  <p>Your rating: {reviewForm.stars} stars</p>
+                  <p>{reviewForm.stars} stars</p>
                 </div>
                 <textarea
                   placeholder="Write your review..."
@@ -250,9 +266,10 @@ function App() {
                   onChange={(e) => setReviewForm({ ...reviewForm, description: e.target.value })}
                 ></textarea>
                 <div className="form-buttons">
-                  <button type="submit">Submit Review</button>
+                  <button type="submit" className="win95-button">Add Review</button>
                   <button 
                     type="button" 
+                    className="win95-button delete"
                     onClick={() => setShowReviewForm(false)}
                   >
                     Cancel

@@ -1,12 +1,11 @@
 .start-menu {
   position: absolute;
-  bottom: 30px;
+  bottom: 48px; /* Adjusted to match new taskbar height */
   left: 0;
-  width: 250px;
-  background-color: #c0c0c0;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  width: 300px; /* Wider menu */
+  background-color: var(--purple-1); /* Light purple background */
+  border: 5px solid black; /* Thick, black border */
+  box-shadow: 12px 12px 0px #000000; /* Harsh, offset shadow */
   z-index: 1100;
   display: flex;
   flex-direction: column;
@@ -15,43 +14,54 @@
 .start-menu-items {
   display: flex;
   flex-direction: column;
-  padding: 6px;
+  padding: 10px; /* More padding */
+  gap: 8px; /* Spacing between items */
 }
 
 .start-menu-item {
   display: flex;
   align-items: center;
-  padding: 8px 10px;
+  padding: 12px 16px; /* More padding */
   cursor: pointer;
   width: 100%;
   text-align: left;
   background: none;
-  border: none;
+  border: 3px solid black; /* Thick, black border */
   font-family: 'MS Sans Serif', Arial, sans-serif;
-  font-size: 12px;
+  font-size: 16px; /* Larger text */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.1s, background-color 0.1s;
 }
 
 .start-menu-item:hover {
-  background-color: #000080;
-  color: white;
+  background-color: var(--yellow-2); /* Yellow for hover states */
+  color: black;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.start-menu-item:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+  background-color: var(--yellow-3); /* Darker yellow when active */
 }
 
 .start-menu-item-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+  width: 32px; /* Larger icon */
+  height: 32px;
+  margin-right: 16px; /* More space */
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid black; /* Border around icons */
+  background-color: var(--blue-1); /* Light blue background */
+  padding: 4px;
 }
 
 .start-menu-item-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/* When item is hovered, the icon should remain black */
-.start-menu-item:hover .start-menu-item-icon {
-  color: black;
 }

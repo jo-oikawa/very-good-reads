@@ -1,0 +1,78 @@
+/* CurrentReadingWindow specific styles */
+.current-reading-window h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--purple-4);
+}
+
+.reading-books {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reading-book-card {
+  padding: 15px;
+  border: 3px solid black;
+  background-color: var(--blue-1);
+}
+
+.book-title {
+  font-size: 24px; /* Same size as the "Currently Reading" header */
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.book-author {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.book-format {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.book-notes {
+  font-size: 14px;
+  font-style: italic;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+.empty-state {
+  padding: 20px;
+  text-align: center;
+  border: 3px solid black;
+  background-color: var(--yellow-1);
+}
+
+/* Add styling for book actions section */
+.book-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.book-actions .win95-button {
+  background-color: var(--green-2);
+}
+
+.book-actions .win95-button:hover {
+  background-color: var(--green-3);
+}
