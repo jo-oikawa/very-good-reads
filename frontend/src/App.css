@@ -1,87 +1,75 @@
+/* Base styles */
 .App {
-  text-align: center;
+  text-align: left;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Reset for global styling */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: 'MS Sans Serif', Arial, sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* New styles for the reading tracker app */
-
-/* Form styles */
+/* General form styling */
 form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   width: 100%;
-  max-width: 500px;
-  margin-bottom: 2rem;
 }
 
-input, textarea, select {
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  font-size: 1rem;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-button {
-  padding: 0.5rem 1rem;
-  background-color: #61dafb;
-  color: #282c34;
-  border: none;
-  cursor: pointer;
+label {
+  font-size: 12px;
   font-weight: bold;
-  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #4fa8d1;
+/* Windows 95 style inputs */
+input, textarea, select {
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  background-color: #ffffff;
+  padding: 4px;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 12px;
 }
 
-/* Reading records list */
-ul {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-  max-width: 800px;
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #000000;
 }
 
-li {
-  background-color: #3a3f4b;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: 5px;
-  text-align: left;
+/* Windows 95 style buttons */
+.win95-button {
+  padding: 4px 8px;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 12px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.win95-button:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.win95-button.small {
+  font-size: 10px;
+  padding: 2px 4px;
 }
 
 /* Review form modal */
@@ -95,116 +83,148 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 .review-form-content {
-  background-color: #282c34;
-  padding: 2rem;
-  border-radius: 8px;
+  background-color: #c0c0c0;
+  border: 3px solid;
+  border-color: #dfdfdf #000000 #000000 #dfdfdf;
   width: 90%;
-  max-width: 500px;
+  max-width: 450px;
+  padding: 2px;
+}
+
+.review-form-content form {
+  background-color: #c0c0c0;
+  padding: 10px;
 }
 
 .review-form-content h2 {
-  margin-top: 0;
-  color: #61dafb;
+  height: 28px;
+  background: linear-gradient(to right, #000080, #1084d0);
+  color: white;
+  padding: 4px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.star-rating {
-  margin-bottom: 1rem;
-}
-
+/* Star rating controls */
 .stars {
   display: flex;
-  justify-content: center;
-  margin: 1rem 0;
+  gap: 2px;
+  margin: 10px 0;
 }
 
 .stars button {
   background: none;
   border: none;
-  font-size: 1.5rem;
-  color: #cccccc;
+  font-size: 18px;
+  color: #ccc;
   cursor: pointer;
-  padding: 0 5px;
 }
 
 .stars button.active {
   color: gold;
 }
 
-.form-buttons {
+/* Custom styling for specific components */
+.add-record-window form {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Book record styling */
+.book-record-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.book-record-item {
+  background-color: #f0f0f0;
+  border: 1px solid #d0d0d0;
+  padding: 10px;
+}
+
+.book-record-header {
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
+  align-items: center;
 }
 
-.form-buttons button {
-  width: 48%;
+.book-author, .book-format, .book-notes {
+  margin-top: 5px;
+  font-size: 12px;
 }
 
-/* Review display in record item */
+.book-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.status-dropdown {
+  font-size: 11px;
+  height: 20px;
+}
+
 .review-display {
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  background-color: #343942;
-  border-radius: 4px;
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #e0e0e0;
+  border: 1px solid #d0d0d0;
 }
 
 .star-rating-display {
-  font-size: 1.2rem;
-  color: gold;
-  margin: 0.25rem 0;
+  color: #333;
+  font-size: 14px;
 }
 
-/* Review text */
 .review-text {
+  margin-top: 5px;
   font-style: italic;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  background-color: #2c3039;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  font-size: 12px;
+}
+
+/* Empty state message */
+.empty-state {
+  text-align: center;
+  padding: 20px;
+  color: #666;
 }
 
 /* Search and filter controls */
 .search-filter-controls {
   display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 2rem;
-  justify-content: center;
 }
 
-.search-filter-controls input {
-  flex: 2;
-  min-width: 250px;
+/* Adjustments for the current-reading-window */
+.reading-book-card {
+  background-color: #f0f0f0;
+  border: 1px solid #d0d0d0;
   padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #4fa8d1;
+  margin-bottom: 10px;
 }
 
-.search-filter-controls select {
-  flex: 1;
-  min-width: 150px;
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #4fa8d1;
+/* Window content scrolling */
+.window-content {
+  overflow-y: auto;
+  max-height: calc(100vh - 100px);
 }
 
-.search-filter-controls button {
-  padding: 10px 15px;
-  background-color: #4fa8d1;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.search-filter-controls button:hover {
-  background-color: #3a7fa3;
+/* Headings inside windows */
+.window-content h2 {
+  margin-bottom: 15px;
+  color: #000080;
+  font-size: 16px;
 }

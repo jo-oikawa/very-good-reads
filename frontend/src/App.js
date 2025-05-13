@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { WindowProvider } from './context/WindowContext';
+import Desktop from './components/Desktop/Desktop';
+import AddRecordWindow from './components/windows/AddRecordWindow';
+import CurrentReadingWindow from './components/windows/CurrentReadingWindow';
+import RecordListWindow from './components/windows/RecordListWindow';
 
 function App() {
   const [records, setRecords] = useState([]);
@@ -189,50 +194,34 @@ function App() {
   const filteredRecords = getFilteredRecords();
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Reading Tracker</h1>
-
-        {/* Form for logging reading journeys */}
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Title"
-            value={formData.title}
-            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            required
+    <WindowProvider>
+      <div className="App">
+        <Desktop>
+          {/* Add Record Window */}
+          <AddRecordWindow 
+            formData={formData}
+            setFormData={setFormData}
+            handleSubmit={handleSubmit}
           />
-          <input
-            type="text"
-            placeholder="Author"
-            value={formData.author}
-            onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-            required
+          
+          {/* Current Reading Window */}
+          <CurrentReadingWindow records={records} />
+          
+          {/* Record List Window */}
+          <RecordListWindow 
+            records={filteredRecords}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            statusFilter={statusFilter}
+            setStatusFilter={setStatusFilter}
+            clearFilters={clearFilters}
+            handleDelete={handleDelete}
+            handleStatusChange={handleStatusChange}
+            openReviewForm={openReviewForm}
+            renderStarRating={renderStarRating}
           />
-          <input
-            type="text"
-            placeholder="Format"
-            value={formData.format}
-            onChange={(e) => setFormData({ ...formData, format: e.target.value })}
-            required
-          />
-          <textarea
-            placeholder="Notes"
-            value={formData.notes}
-            onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-          ></textarea>
-          <select
-            value={formData.status || 'to-read'}
-            onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-          >
-            <option value="to-read">To-Read</option>
-            <option value="reading">Reading</option>
-            <option value="read">Read</option>
-            <option value="did-not-finish">Did Not Finish</option>
-          </select>
-          <button type="submit">Add Record</button>
-        </form>
-
+        </Desktop>
+        
         {/* Review form modal */}
         {showReviewForm && (
           <div className="review-form-modal">
@@ -273,72 +262,8 @@ function App() {
             </div>
           </div>
         )}
-
-        {/* Search and filter controls */}
-        <div className="search-filter-controls">
-          <input
-            type="text"
-            placeholder="Search by title, author, notes, or format"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-          >
-            <option value="">All Statuses</option>
-            <option value="to-read">To-Read</option>
-            <option value="reading">Reading</option>
-            <option value="read">Read</option>
-            <option value="did-not-finish">Did Not Finish</option>
-          </select>
-          <button onClick={clearFilters}>Clear Filters</button>
-        </div>
-
-        {/* Display reading records */}
-        <ul>
-          {filteredRecords.map((record) => (
-            <li key={record._id}>
-              <strong>{record.title}</strong> by {record.author} ({record.format})
-              <p>{record.notes}</p>
-              <p>Status: {record.status}</p>
-              
-              {/* Display star rating if review exists */}
-              {record.review && (
-                <div className="review-display">
-                  <p className="star-rating-display">
-                    Rating: {renderStarRating(record.review.stars)} ({record.review.stars})
-                  </p>
-                  {record.review.description && (
-                    <p className="review-text">{record.review.description}</p>
-                  )}
-                </div>
-              )}
-              
-              {/* Show status dropdown only if record doesn't have a review */}
-              {!record.review && (
-                <select
-                  value={record.status}
-                  onChange={(e) => handleStatusChange(record._id, e.target.value)}
-                >
-                  <option value="to-read">To-Read</option>
-                  <option value="reading">Reading</option>
-                  <option value="read">Read</option>
-                  <option value="did-not-finish">Did Not Finish</option>
-                </select>
-              )}
-              
-              {/* Add Review button for read records without reviews */}
-              {record.status === 'read' && !record.review && (
-                <button onClick={() => openReviewForm(record._id)}>Add Review</button>
-              )}
-              
-              <button onClick={() => handleDelete(record._id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
-      </header>
-    </div>
+      </div>
+    </WindowProvider>
   );
 }
 

@@ -1,0 +1,56 @@
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  height: 90px;
+  margin: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.desktop-icon-image {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  color: #000080; /* Windows 95 icon blue */
+}
+
+.desktop-icon-image svg {
+  width: 32px;
+  height: 32px;
+}
+
+.desktop-icon-label {
+  background-color: #008080; /* Match desktop background */
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+  padding: 2px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* Selected icon state */
+.desktop-icon:active .desktop-icon-image,
+.desktop-icon:active .desktop-icon-label {
+  transform: scale(0.95);
+}
+
+/* Icon container for positioning icons */
+.desktop-icons-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 1;
+}

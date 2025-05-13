@@ -1,0 +1,57 @@
+.start-menu {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 250px;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+}
+
+.start-menu-items {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+}
+
+.start-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 12px;
+}
+
+.start-menu-item:hover {
+  background-color: #000080;
+  color: white;
+}
+
+.start-menu-item-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-menu-item-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* When item is hovered, the icon should remain black */
+.start-menu-item:hover .start-menu-item-icon {
+  color: black;
+}

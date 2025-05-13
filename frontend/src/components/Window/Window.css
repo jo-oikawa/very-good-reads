@@ -1,0 +1,96 @@
+/* Windows 95-style window component */
+.window {
+  position: absolute;
+  background-color: #c0c0c0;
+  border: 3px solid;
+  border-color: #dfdfdf #000000 #000000 #dfdfdf;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  min-width: 300px;
+  min-height: 200px;
+  border-radius: 0;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Window header */
+.window-header {
+  height: 28px;
+  background: linear-gradient(to right, #000080, #1084d0);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px 0 4px;
+  cursor: grab;
+  user-select: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Active window header has blue accent color */
+.window-header-active {
+  background: linear-gradient(to right, #000080, #1084d0);
+}
+
+/* Inactive window header has gray color */
+.window-header:not(.window-header-active) {
+  background: linear-gradient(to right, #808080, #a0a0a0);
+}
+
+/* Window title */
+.window-title {
+  padding-left: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Window controls (min/max/close buttons) */
+.window-controls {
+  display: flex;
+  gap: 2px;
+}
+
+/* Individual window control buttons */
+.window-control {
+  width: 20px;
+  height: 20px;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Button hover effect */
+.window-control:hover {
+  background-color: #d0d0d0;
+}
+
+/* Button active (pressed) effect */
+.window-control:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* Window content area */
+.window-content {
+  flex: 1;
+  padding: 10px;
+  overflow: auto;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  /* Add more styling as needed */
+}
+
+/* Active window has a more pronounced border */
+.window-active {
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+}
