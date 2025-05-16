@@ -1,0 +1,204 @@
+/* RecordListWindow styles */
+
+.record-list-window h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--purple-4);
+}
+
+/* Search and filter controls */
+.search-filter-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 2px solid black;
+}
+
+/* Book records list */
+.book-records {
+  margin-top: 15px;
+}
+
+.book-record-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Updated to match recommendation list */
+}
+
+.book-record-item {
+  display: flex; /* Added to make the whole card a flex container */
+  background-color: #f0f0f0; /* Matching recommendation card bg color */
+  border: 1px solid #888; /* Thinner border like recommendation card */
+  box-shadow: 2px 2px 0 #000; /* Adding drop shadow like recommendation card */
+  padding: 12px; /* Reduced padding to match recommendation card */
+  margin-bottom: 8px; /* Adding bottom margin like recommendation card */
+}
+
+/* Book record content with cover - removed since we're making the item itself flex */
+.book-record-content {
+  display: flex;
+  width: 100%;
+  gap: 16px; /* Updated to match recommendation card gap */
+}
+
+.book-cover-container {
+  flex-shrink: 0; /* Prevent shrinking */
+  width: 120px; /* Matching recommendation card width */
+  min-width: 120px; /* Ensuring consistent width */
+  height: auto; /* Let height be determined by content/aspect ratio */
+  margin-right: 0; /* Remove right margin as gap handles spacing */
+  border: none; /* Remove border to match recommendation card */
+  background-color: transparent; /* Changed to match recommendation card */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.book-cover {
+  width: 100%;
+  height: auto; /* Let height adjust based on aspect ratio */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Match recommendation card shadow */
+  object-fit: cover;
+}
+
+/* Style for fallback book icon */
+.book-cover.fallback {
+  object-fit: contain;
+  padding: 8px; /* Reduced padding to match recommendation card */
+  background-color: #ddd; /* Match recommendation card fallback color */
+}
+
+.loading-cover, .no-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px; /* Reduced padding */
+  color: var(--purple-4);
+  background-color: #ddd; /* Match recommendation card fallback color */
+}
+
+.book-record-info {
+  flex-grow: 1; /* Match recommendation card's book-info */
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Ensures the flex child can shrink below its content size */
+  overflow-wrap: break-word; /* Ensures long words break */
+  word-wrap: break-word; /* Legacy support */
+}
+
+.book-record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px; /* Reduced margin to match recommendation card */
+}
+
+.book-record-header h4 {
+  font-size: 16px; /* Reduced font size to match recommendation card */
+  font-weight: 900;
+  margin: 0;
+}
+
+.book-author {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-style: italic; /* Match recommendation card */
+  color: #444; /* Match recommendation card */
+  font-size: 14px; /* Reduced font size */
+  font-weight: normal; /* Changed from 600 to match recommendation card */
+}
+
+.book-format {
+  font-size: 14px;
+  font-weight: normal; /* Changed from 600 to match recommendation card */
+  margin-bottom: 4px; /* Reduced margin */
+}
+
+.book-notes {
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 8px;
+  overflow-wrap: break-word; /* Enable word breaking for long text */
+  word-wrap: break-word; /* Legacy support */
+  hyphens: auto; /* Add hyphens for better text breaks */
+  max-width: 100%; /* Ensure text doesn't overflow its container */
+  line-height: 1.4; /* Match recommendation card line height */
+}
+
+/* Review display */
+.review-display {
+  margin-top: 8px; /* Reduced margin */
+  padding: 8px;
+  background-color: rgba(240, 240, 240, 0.5); /* Lighter background */
+  border: 1px solid #888; /* Thinner border to match card style */
+  overflow-wrap: break-word; /* Enable word breaking for long text */
+  word-wrap: break-word; /* Legacy support */
+  hyphens: auto; /* Add hyphens for better text breaks */
+  width: 100%; /* Ensure the width is contained */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+.star-rating-display {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px; /* Reduced margin */
+}
+
+.review-text {
+  font-style: italic;
+  overflow-wrap: break-word; /* Enable word breaking for long text */
+  word-wrap: break-word; /* Legacy support */
+  hyphens: auto; /* Add hyphens for better text breaks */
+  max-width: 100%; /* Ensure text doesn't overflow its container */
+}
+
+/* Book status section */
+.book-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px; /* Reduced margin */
+  padding-top: 4px; /* Reduced padding */
+}
+
+.status-dropdown {
+  padding: 4px 8px;
+  border: 1px solid #888; /* Thinner border to match card style */
+  background-color: white;
+}
+
+/* Empty state */
+.empty-state {
+  padding: 12px; /* Reduced padding */
+  text-align: center;
+  border: 1px solid #888; /* Thinner border to match card style */
+  background-color: #f5f5f5; /* Lighter background to match card style */
+}
+
+/* Media queries for larger screens */
+@media screen and (min-width: 992px) {
+  /* For large screens (992px and above) */
+  .window-record-list {
+    max-width: 50vw !important; /* Half of the viewport width */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  /* For extra large screens */
+  .window-record-list {
+    max-width: 50vw !important; /* Keep at half viewport width */
+  }
+}

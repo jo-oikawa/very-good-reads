@@ -5,6 +5,7 @@ export const WINDOW_TYPES = {
   ADD_RECORD: 'add-record',
   CURRENT_READING: 'current-reading',
   RECORD_LIST: 'record-list',
+  RECOMMENDATIONS: 'recommendations',
 };
 
 // Initial state for our windows
@@ -33,6 +34,14 @@ const initialState = {
       isMinimized: false,
       position: { x: 250, y: 150 },
       zIndex: 1,
+    },
+    [WINDOW_TYPES.RECOMMENDATIONS]: {
+      id: WINDOW_TYPES.RECOMMENDATIONS,
+      title: 'Book Recommendations',
+      isOpen: false, // Start closed initially
+      isMinimized: false,
+      position: { x: 350, y: 100 },
+      zIndex: 0,
     },
   },
   activeWindowId: WINDOW_TYPES.ADD_RECORD, // Default active window

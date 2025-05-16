@@ -4,24 +4,11 @@ import Taskbar from '../taskbar/Taskbar';
 import DesktopIcon from './DesktopIcon';
 import './Desktop.css';
 
-// Simple SVG icons for our windows
-const AddBookIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-  </svg>
-);
-
-const ReadingIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1.5-1L8 9V4zm9 16H6V4h1v9l3-2.25L13 13V4h5v16z"/>
-  </svg>
-);
-
-const CollectionIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/>
-  </svg>
-);
+// Import SVG icons
+import { ReactComponent as AddBookIcon } from '../../assets/icons/New.svg';
+import { ReactComponent as ReadingIcon } from '../../assets/icons/Currently.svg';
+import { ReactComponent as CollectionIcon } from '../../assets/icons/Collection.svg';
+import { ReactComponent as RecommendationsIcon } from '../../assets/icons/Recommended.svg';
 
 const Desktop = ({ children }) => {
   // Use our window context to manage window states
@@ -34,18 +21,23 @@ const Desktop = ({ children }) => {
         <div className="desktop-icons-container">
           <DesktopIcon 
             windowId={WINDOW_TYPES.ADD_RECORD}
-            title="Add New Book"
+            title="Add New"
             icon={<AddBookIcon />}
           />
           <DesktopIcon 
             windowId={WINDOW_TYPES.CURRENT_READING}
-            title="Currently Reading"
+            title="Currently"
             icon={<ReadingIcon />}
           />
           <DesktopIcon 
             windowId={WINDOW_TYPES.RECORD_LIST}
-            title="Book Collection"
+            title="Collection"
             icon={<CollectionIcon />}
+          />
+          <DesktopIcon 
+            windowId={WINDOW_TYPES.RECOMMENDATIONS}
+            title="Recommended"
+            icon={<RecommendationsIcon />}
           />
         </div>
         

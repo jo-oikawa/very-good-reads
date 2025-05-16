@@ -1,8 +1,16 @@
 import React from 'react';
 import './StartMenu.css';
+import { WINDOW_TYPES, useWindowContext } from '../../context/WindowContext';
 
 const StartMenu = ({ isOpen, onClose }) => {
+  const { openWindow } = useWindowContext();
+  
   if (!isOpen) return null;
+
+  const handleOpenRecommendations = () => {
+    openWindow(WINDOW_TYPES.RECOMMENDATIONS);
+    onClose();
+  };
 
   const handleGitHubFeedback = () => {
     window.open('https://github.com/jo-oikawa/very-good-reads', '_blank');
@@ -12,6 +20,15 @@ const StartMenu = ({ isOpen, onClose }) => {
   return (
     <div className="start-menu">
       <div className="start-menu-items">
+        <button className="start-menu-item" onClick={handleOpenRecommendations}>
+          <div className="start-menu-item-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+              <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+            </svg>
+          </div>
+          <div className="start-menu-item-text">Book Recommendations</div>
+        </button>
+        
         <button className="start-menu-item" onClick={handleGitHubFeedback}>
           <div className="start-menu-item-icon">
             <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">

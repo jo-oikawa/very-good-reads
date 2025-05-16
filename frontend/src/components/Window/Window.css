@@ -6,6 +6,7 @@
   box-shadow: 12px 12px 0px #000000; /* Harsh, offset shadow */
   min-width: 300px;
   min-height: 200px;
+  max-height: 80vh; /* Reduced from 90vh to 80vh to provide more room */
   /* Set max-width to 2/3rds of viewport for desktop screens */
   max-width: 100%;
   border-radius: 0;
@@ -112,4 +113,14 @@
 /* Active window has a more pronounced appearance */
 .window-active {
   z-index: 100; /* Ensure active window is on top */
+}
+
+/* Add this rule to override any conflicting styles */
+.window-recommendations .window-header,
+.window-record-list .window-header {
+  height: 40px !important; /* Force 40px height to match other windows */
+  min-height: 40px !important; /* Ensure minimum height is also set */
+  max-height: 40px !important; /* Ensure maximum height is also set */
+  padding: 0 8px !important; /* Match the default window header padding */
+  box-sizing: border-box !important; /* Ensure padding is included in height */
 }

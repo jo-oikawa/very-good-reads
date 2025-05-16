@@ -1,3 +1,4 @@
+/* Desktop Icon Styling */
 .desktop-icon {
   display: flex;
   flex-direction: column;
@@ -24,10 +25,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 2px; /* Reduced from 10px to bring label closer to icon */
   color: #000000; /* Black icons for contrast */
-  border: 3px solid black; /* Thick border around icons */
-  background-color: #ffffff;
   padding: 8px;
 }
 
@@ -37,8 +36,7 @@
 }
 
 .desktop-icon-label {
-  background-color: #000000; /* Black background */
-  color: #ffffff;
+  color: #000000; /* Changed to black text */
   font-size: 10px; /* Smaller text to fit better */
   font-weight: bold;
   text-transform: uppercase;
@@ -49,8 +47,9 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2; /* Added standard property for compatibility */
   overflow: hidden;
-  border: 2px solid black;
+  border: none; /* Removed border */
 }
 
 /* Selected icon state */

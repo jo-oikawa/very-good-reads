@@ -5,6 +5,8 @@ import Desktop from './components/Desktop/Desktop';
 import AddRecordWindow from './components/windows/AddRecordWindow';
 import CurrentReadingWindow from './components/windows/CurrentReadingWindow';
 import RecordListWindow from './components/windows/RecordListWindow';
+import RecommendationsWindow from './components/windows/RecommendationsWindow';
+import Notification from './components/Notification/Notification';
 // Import the star SVG
 import { ReactComponent as StarIcon } from './assets/icons/star.svg';
 
@@ -18,6 +20,8 @@ function App() {
   // Search and filter state
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
+  // Notification state
+  const [notification, setNotification] = useState(null);
 
   // Fetch all reading records
   useEffect(() => {
@@ -59,8 +63,14 @@ function App() {
         }
 
         setFormData({ title: '', author: '', format: '', notes: '', status: '' });
+        // Show success notification
+        setNotification({ type: 'success', message: 'Record added successfully!' });
       })
-      .catch((error) => console.error('Error creating record:', error));
+      .catch((error) => {
+        console.error('Error creating record:', error);
+        // Show error notification
+        setNotification({ type: 'error', message: 'Failed to add record. Please try again.' });
+      });
   };
 
   // Handle adding to to-read list
@@ -80,15 +90,29 @@ function App() {
       .then((newRecord) => {
         setToReadList((prev) => [...prev, newRecord]);
         setFormData({ title: '', author: '', format: '', notes: '' });
+        // Show success notification
+        setNotification({ type: 'success', message: 'Added to to-read list!' });
       })
-      .catch((error) => console.error('Error adding to to-read list:', error));
+      .catch((error) => {
+        console.error('Error adding to to-read list:', error);
+        // Show error notification
+        setNotification({ type: 'error', message: 'Failed to add to to-read list. Please try again.' });
+      });
   };
 
   // Handle record deletion
   const handleDelete = (id) => {
     fetch(`/api/reading-records/${id}`, { method: 'DELETE' })
-      .then(() => setRecords((prev) => prev.filter((record) => record._id !== id)))
-      .catch((error) => console.error('Error deleting record:', error));
+      .then(() => {
+        setRecords((prev) => prev.filter((record) => record._id !== id));
+        // Show success notification
+        setNotification({ type: 'success', message: 'Record deleted successfully!' });
+      })
+      .catch((error) => {
+        console.error('Error deleting record:', error);
+        // Show error notification
+        setNotification({ type: 'error', message: 'Failed to delete record. Please try again.' });
+      });
   };
 
   // Handle changing the status of a record to any value
@@ -116,8 +140,14 @@ function App() {
           setReviewForm({ recordId: id, stars: 0, description: '' });
           setShowReviewForm(true);
         }
+        // Show success notification
+        setNotification({ type: 'success', message: 'Status updated successfully!' });
       })
-      .catch((error) => console.error('Error updating status:', error));
+      .catch((error) => {
+        console.error('Error updating status:', error);
+        // Show error notification
+        setNotification({ type: 'error', message: 'Failed to update status. Please try again.' });
+      });
   };
 
   // Handle submitting a review
@@ -144,8 +174,14 @@ function App() {
         );
         setShowReviewForm(false);
         setReviewForm({ recordId: null, stars: 0, description: '' });
+        // Show success notification
+        setNotification({ type: 'success', message: 'Review added successfully!' });
       })
-      .catch((error) => console.error('Error adding review:', error));
+      .catch((error) => {
+        console.error('Error adding review:', error);
+        // Show error notification
+        setNotification({ type: 'error', message: 'Failed to add review. Please try again.' });
+      });
   };
 
   // Open review form for a specific record
@@ -205,6 +241,44 @@ function App() {
 
   const filteredRecords = getFilteredRecords();
 
+  // Add a new book directly (used by RecommendationsWindow)
+  const handleAddBookDirectly = (bookData) => {
+    // Set the form data first
+    setFormData(bookData);
+    
+    // Then make the API request
+    fetch('/api/reading-records', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...bookData, status: bookData.status || 'to-read' }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to create record');
+        }
+        return response.json();
+      })
+      .then((newRecord) => {
+        setRecords((prev) => [...prev, newRecord]);
+
+        // Check if the new record has "read" status to show review form immediately
+        if (newRecord.status === 'read') {
+          setReviewForm({ recordId: newRecord._id, stars: 0, description: '' });
+          setShowReviewForm(true);
+        }
+
+        // Reset form data
+        setFormData({ title: '', author: '', format: '', notes: '', status: '' });
+        // Show success notification
+        setNotification({ type: 'success', message: 'Book added successfully!' });
+      })
+      .catch((error) => {
+        console.error('Error creating record:', error);
+        // Show error notification
+        setNotification({ type: 'error', message: 'Failed to add book. Please try again.' });
+      });
+  };
+
   return (
     <WindowProvider>
       <div className="App">
@@ -235,6 +309,15 @@ function App() {
             handleStatusChange={handleStatusChange}
             openReviewForm={openReviewForm}
             renderStarRating={renderStarRating}
+          />
+          
+          {/* Recommendations Window */}
+          <RecommendationsWindow 
+            records={records}
+            handleStatusChange={handleStatusChange}
+            openReviewForm={openReviewForm}
+            handleAddBook={handleSubmit}
+            handleAddBookDirectly={handleAddBookDirectly}
           />
         </Desktop>
         
@@ -278,6 +361,15 @@ function App() {
               </form>
             </div>
           </div>
+        )}
+
+        {/* Notification component */}
+        {notification && (
+          <Notification 
+            type={notification.type} 
+            message={notification.message} 
+            onClose={() => setNotification(null)} 
+          />
         )}
       </div>
     </WindowProvider>

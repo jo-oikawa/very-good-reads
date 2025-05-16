@@ -25,13 +25,15 @@
 }
 
 .desktop-content {
-  position: absolute;
+  position: relative; /* Needed for proper positioning of draggable children */
   top: 0;
   left: 0;
   width: 100%;
   /* Height is 100% minus taskbar height */
   height: calc(100% - 48px); /* Increased taskbar height */
   padding: 20px; /* Add some padding for elements to breathe */
+  overflow: auto; /* Allow content to be scrollable if it overflows */
+  min-height: 500px; /* Ensure there's enough space for dragging */
 }
 
 /* Global styles for the neo-brutalist UI */
@@ -47,55 +49,4 @@ button {
   cursor: pointer;
 }
 
-/* Desktop icons styling with neo-brutalist approach */
-.desktop-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #000000; /* Black text for contrast */
-  cursor: pointer;
-  width: 100px; /* Wider for better spacing */
-  margin: 16px;
-  text-align: center;
-  border: 3px solid transparent; /* For selected state */
-  padding: 10px;
-  transition: transform 0.2s;
-}
-
-.desktop-icon:hover {
-  transform: translateY(-5px);
-}
-
-.desktop-icon:active {
-  transform: translateY(0);
-}
-
-.desktop-icon-image {
-  width: 48px; /* Larger icons */
-  height: 48px;
-  margin-bottom: 10px;
-  border: 3px solid black; /* Thick border around icons */
-  padding: 6px;
-  background-color: var(--blue-1); /* Light blue background for icons */
-}
-
-.desktop-icon-label {
-  font-size: 9px;
-  font-weight: bold;
-  text-transform: uppercase;
-  user-select: none;
-  letter-spacing: 0.05em;
-  margin-top: 8px;
-  background-color: var(--purple-3); /* Purple accent color */
-  color: #ffffff;
-  padding: 8px 10px;
-}
-
-/* Icon container for positioning icons */
-.desktop-icons-container {
-  display: flex;
-  /* flex-wrap: wrap; */
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}   
+/* Desktop icon styles are now defined in DesktopIcon.css */

@@ -33,6 +33,26 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Get records with a specific status (to-read, reading, read)
+router.get('/:status', async (req, res) => {
+    const db = await connectToDatabase();
+    const collection = db.collection('readingRecords');
+    const { status } = req.params;
+    
+    // Validate status parameter
+    const validStatuses = ['to-read', 'reading', 'read', 'did-not-finish'];
+    if (!validStatuses.includes(status)) {
+        return res.status(400).send({ error: 'Invalid status parameter' });
+    }
+
+    try {
+        const records = await collection.find({ status }).toArray();
+        res.status(200).send(records);
+    } catch (err) {
+        res.status(500).send({ error: `Failed to fetch ${status} records` });
+    }
+});
+
 // Update a reading record
 router.put('/:id', async (req, res) => {
     const db = await connectToDatabase();

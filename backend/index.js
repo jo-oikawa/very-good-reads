@@ -3,7 +3,7 @@ const connectToDatabase = require('./db'); // Import the database connection fun
 const readingRecordsRouter = require('./routes/readingRecords'); //Import the reading records router for CRUD operations
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001; // Changed from 3000 to 3001 to match frontend expectations
 
 // Middleware to parse JSON
 app.use(express.json());

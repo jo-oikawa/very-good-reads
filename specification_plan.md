@@ -14,15 +14,14 @@
 - Provide a basic interface for users to search and organize their reading records.
 
 ### P1 (Priority 1 Features)
-- Add functionality for users to share their reading records with others.
-- Include advanced search and filtering options for better organization.
-- Introduce a dashboard to visualize reading habits and progress over time.
+- Include search and filtering options for better organization.
+- Introduce a timeline to view reading activity over time.
 
 ### Stretch Goals
-- Foster a sense of community by enabling users to follow others reading activity.
 - Integrate gamification elements such as goals, badges or achievements, to encourage consistent reading.
 - Support importing/exporting reading data from/to external platforms or formats.
 - Provide personalized recommendations based on users' reading history and preferences.
+- Add functionality for users to share their reading records with others.
 
 ## Audience
 

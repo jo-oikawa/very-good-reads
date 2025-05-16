@@ -1,0 +1,153 @@
+.recommendations-window {
+  padding: 16px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.recommendations-window h1 {
+  font-size: 18px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #888;
+}
+
+.recommendations-window h2 {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.recommendations-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recommendation-section {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+}
+
+.recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.recommendations-list.history {
+  gap: 24px;
+}
+
+.recommendation-card {
+  display: flex;
+  background-color: #f0f0f0;
+  border: 1px solid #888;
+  box-shadow: 2px 2px 0 #000;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.book-cover-container {
+  flex-shrink: 0;
+  width: 80px;
+  margin-right: 16px;
+}
+
+.book-cover {
+  width: 100%;
+  height: auto;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.book-cover.fallback {
+  background-color: #ddd;
+  padding: 8px;
+}
+
+.book-info {
+  flex-grow: 1;
+}
+
+.book-info h4 {
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.book-author {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-style: italic;
+  color: #444;
+}
+
+.recommendation-reason {
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Style for the "Add to reading list" button */
+.book-info .win95-button {
+  display: inline-block;
+  width: 200px;
+  min-width: 140px;
+  margin-top: 4px;
+}
+
+.custom-request {
+  margin: 12px 0;
+}
+
+.custom-request textarea {
+  width: 100%;
+  padding: 8px;
+  font-family: inherit;
+  border: 1px solid #808080;
+  margin-bottom: 8px;
+}
+
+.loading-message {
+  padding: 12px;
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+}
+
+.error-message {
+  padding: 12px;
+  color: #c00;
+  background-color: #fff0f0;
+  border: 1px solid #fcc;
+  margin-bottom: 12px;
+}
+
+.empty-state {
+  padding: 16px;
+  text-align: center;
+  color: #666;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  font-style: italic;
+}
+
+/* Media queries for larger screens */
+@media screen and (min-width: 992px) {
+  /* For large screens (992px and above) */
+  .window-recommendations {
+    max-width: 50vw !important; /* Half of the viewport width */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  /* For extra large screens */
+  .window-recommendations {
+    max-width: 50vw !important; /* Keep at half viewport width */
+  }
+}

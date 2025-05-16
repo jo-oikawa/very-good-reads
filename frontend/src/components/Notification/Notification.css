@@ -1,0 +1,70 @@
+/* Notification component styling */
+.notification {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+  max-width: 350px;
+  overflow: hidden;
+  border: 4px solid black;
+  box-shadow: 8px 8px 0px #000000;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification.hide {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.notification-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.notification-message {
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.notification-close {
+  background: none;
+  border: 3px solid black;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  line-height: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.notification-close:hover {
+  background-color: var(--yellow-3);
+}
+
+/* Notification types */
+.notification-success {
+  background-color: var(--green-2);
+}
+
+.notification-error {
+  background-color: var(--orange-3);
+  color: white;
+}
+
+.notification-info {
+  background-color: var(--blue-3);
+}

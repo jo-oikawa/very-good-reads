@@ -40,6 +40,7 @@ const Window = ({ id, children, className }) => {
       defaultPosition={windowData.position}
       onStop={handleDragStop}
       bounds="parent"
+      grid={[1, 1]} // Remove grid snap constraint to enable smooth movement
     >
       <div
         ref={nodeRef}
