@@ -37,26 +37,7 @@ const RecommendationsWindow = ({
       rating: record.rating || 0,  // Ensure rating is defined
     }));
 
-  // Load default recommendations when the component mounts or when records change
-  useEffect(() => {
-    // Only fetch recommendations when the window is actually open
-    if (isWindowOpen) {
-      // Only do the initial fetch if we haven't done it yet
-      // or if records have changed after the window was opened
-      if (!initialFetchDone) {
-        fetchToReadRecommendation();
-        fetchHistoryRecommendations();
-        setInitialFetchDone(true);
-      }
-    } else {
-      // Reset the initialFetchDone flag when window is closed
-      // so we'll fetch fresh data next time the window opens
-      setInitialFetchDone(false);
-    }
-  // Remove derived values from dependency array to prevent unnecessary re-renders
-  }, [isWindowOpen, records, initialFetchDone, fetchToReadRecommendation, fetchHistoryRecommendations]);
-  
-  // Define fetch functions with useCallback to avoid recreating them on every render
+  // Function to fetch recommendations from the to-read list
   const fetchToReadRecommendation = useCallback(async () => {
     if (toReadList.length === 0) {
       setToReadError('Your to-read list is empty. Add some books first!');
@@ -375,6 +356,25 @@ const RecommendationsWindow = ({
     );
   };
 
+  // Load default recommendations when the component mounts or when records change
+  useEffect(() => {
+    // Only fetch recommendations when the window is actually open
+    if (isWindowOpen) {
+      // Only do the initial fetch if we haven't done it yet
+      // or if records have changed after the window was opened
+      if (!initialFetchDone) {
+        fetchToReadRecommendation();
+        fetchHistoryRecommendations();
+        setInitialFetchDone(true);
+      }
+    } else {
+      // Reset the initialFetchDone flag when window is closed
+      // so we'll fetch fresh data next time the window opens
+      setInitialFetchDone(false);
+    }
+  // Remove derived values from dependency array to prevent unnecessary re-renders
+  }, [isWindowOpen, records, initialFetchDone, fetchToReadRecommendation, fetchHistoryRecommendations]);
+  
   return (
     <Window id={WINDOW_TYPES.RECOMMENDATIONS} className="window-recommendations">
       <div className="recommendations-window">
