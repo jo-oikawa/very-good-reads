@@ -1,5 +1,5 @@
 import React from 'react';
-import { useWindowContext, WINDOW_TYPES } from '../../context/WindowContext';
+import { WINDOW_TYPES } from '../../context/WindowContext';
 import Taskbar from '../taskbar/Taskbar';
 import DesktopIcon from './DesktopIcon';
 import './Desktop.css';
