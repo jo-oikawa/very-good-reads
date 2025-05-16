@@ -11,9 +11,6 @@ import { ReactComponent as CollectionIcon } from '../../assets/icons/Collection.
 import { ReactComponent as RecommendationsIcon } from '../../assets/icons/Recommended.svg';
 
 const Desktop = ({ children }) => {
-  // Use our window context to manage window states
-  const { state } = useWindowContext();
-  
   return (
     <div className="desktop">
       <div className="desktop-content">

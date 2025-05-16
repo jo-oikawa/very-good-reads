@@ -119,7 +119,7 @@ const RecordListWindow = ({
     return () => {
       isMounted = false;
     };
-  }, [currentPageRecords]);
+  }, [currentPageRecords, bookCovers, useFallbacks]);
 
   return (
     <Window id={WINDOW_TYPES.RECORD_LIST} className="window-record-list">

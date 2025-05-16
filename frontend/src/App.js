@@ -12,7 +12,6 @@ import { ReactComponent as StarIcon } from './assets/icons/star.svg';
 
 function App() {
   const [records, setRecords] = useState([]);
-  const [toReadList, setToReadList] = useState([]);
   const [formData, setFormData] = useState({ title: '', author: '', format: '', notes: '' });
   // Add state for review form
   const [reviewForm, setReviewForm] = useState({ recordId: null, stars: 0, description: '' });
@@ -29,14 +28,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => setRecords(data))
       .catch((error) => console.error('Error fetching records:', error));
-  }, []);
-
-  // Fetch to-read list
-  useEffect(() => {
-    fetch('/api/reading-records/to-read')
-      .then((response) => response.json())
-      .then((data) => setToReadList(data))
-      .catch((error) => console.error('Error fetching to-read list:', error));
   }, []);
 
   // Handle form submission
@@ -70,33 +61,6 @@ function App() {
         console.error('Error creating record:', error);
         // Show error notification
         setNotification({ type: 'error', message: 'Failed to add record. Please try again.' });
-      });
-  };
-
-  // Handle adding to to-read list
-  const handleAddToRead = (e) => {
-    e.preventDefault();
-    fetch('/api/reading-records/to-read', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to add to to-read list');
-        }
-        return response.json();
-      })
-      .then((newRecord) => {
-        setToReadList((prev) => [...prev, newRecord]);
-        setFormData({ title: '', author: '', format: '', notes: '' });
-        // Show success notification
-        setNotification({ type: 'success', message: 'Added to to-read list!' });
-      })
-      .catch((error) => {
-        console.error('Error adding to to-read list:', error);
-        // Show error notification
-        setNotification({ type: 'error', message: 'Failed to add to to-read list. Please try again.' });
       });
   };
 

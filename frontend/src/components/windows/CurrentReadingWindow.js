@@ -101,8 +101,8 @@ const CurrentReadingWindow = ({ records, handleStatusChange = () => {}, openRevi
       isMounted = false;
     };
     
-  // Remove bookCovers and useFallbacks from dependencies to prevent infinite loop
-  }, [currentlyReading]);
+  // Added missing dependencies to `useEffect`
+  }, [currentlyReading, bookCovers, useFallbacks]);
   
   return (
     <Window id={WINDOW_TYPES.CURRENT_READING}>

@@ -54,7 +54,7 @@ const RecommendationsWindow = ({
       setInitialFetchDone(false);
     }
   // Remove derived values from dependency array to prevent unnecessary re-renders
-  }, [isWindowOpen, records, initialFetchDone]);
+  }, [isWindowOpen, records, initialFetchDone, fetchToReadRecommendation, fetchHistoryRecommendations]);
   
   // Define fetch functions with useCallback to avoid recreating them on every render
   const fetchToReadRecommendation = useCallback(async () => {
