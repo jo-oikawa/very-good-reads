@@ -190,15 +190,30 @@ input:focus, textarea:focus, select:focus {
   fill: gold;
 }
 
+.star.half {
+  color: gold;
+  fill: gold;
+}
+
 .star.empty {
   color: #ccc;
   fill: #ccc;
 }
 
-/* Fix for star display in reviews */
-.star-rating-display .star {
+/* Fix for star display in reviews - only apply to filled stars */
+.star-rating-display .star.filled {
   color: gold;
   fill: gold;
+}
+
+.star-rating-display .star.half {
+  color: gold;
+  fill: gold;
+}
+
+.star-rating-display .star.empty {
+  color: #ccc;
+  fill: #ccc;
 }
 
 /* Custom styling for specific components */
