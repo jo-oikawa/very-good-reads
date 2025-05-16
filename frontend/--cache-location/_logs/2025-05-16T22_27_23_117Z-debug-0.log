@@ -1,0 +1,18 @@
+0 verbose cli /opt/homebrew/Cellar/node/23.11.0/bin/node /opt/homebrew/bin/npm
+1 info using npm@10.9.2
+2 info using node@v23.11.0
+3 silly config load:file:/opt/homebrew/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/joannaoikawa/projects/very-good-reads/frontend/.npmrc
+5 silly config load:file:/Users/joannaoikawa/.npmrc
+6 silly config load:file:/opt/homebrew/etc/npmrc
+7 verbose title npm eslint ./node_modules/.cache/eslint
+8 verbose argv "eslint" "--cache" "--cache-location" "./node_modules/.cache/eslint" "--clear"
+9 verbose logfile logs-max:10 dir:/Users/joannaoikawa/projects/very-good-reads/frontend/--cache-location/_logs/2025-05-16T22_27_23_117Z-
+10 verbose logfile /Users/joannaoikawa/projects/very-good-reads/frontend/--cache-location/_logs/2025-05-16T22_27_23_117Z-debug-0.log
+11 silly logfile done cleaning log files
+12 verbose cwd /Users/joannaoikawa/projects/very-good-reads/frontend
+13 verbose os Darwin 24.4.0
+14 verbose node v23.11.0
+15 verbose npm  v10.9.2
+16 verbose exit 1
+17 verbose code 1
