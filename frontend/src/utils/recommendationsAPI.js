@@ -1,9 +1,6 @@
 // Recommendations API service
 // This file handles communication with LLM APIs for book recommendations
 
-// Import configuration (contains API credentials)
-import { AZURE_OPENAI_CONFIG } from './config';
-
 // Cache for storing recommendation results to avoid duplicate API calls
 const recommendationsCache = new Map();
 
@@ -85,9 +82,12 @@ export const getRecommendations = async (params) => {
  * @returns {Promise<Object>} - Promise resolving to the LLM response
  */
 const callLLMService = async (prompt) => {
-  // Get configuration from config file
-  const { endpoint, apiKey, deploymentName, apiVersion } = AZURE_OPENAI_CONFIG;
-  
+  // Get configuration from environment variables
+  const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
+  const apiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
+  const deploymentName = process.env.REACT_APP_AZURE_OPENAI_DEPLOYMENT_NAME;
+  const apiVersion = process.env.REACT_APP_AZURE_OPENAI_API_VERSION;
+
   // For Azure, the model version is included in the deployment name, not as a separate parameter
   const apiUrl = `${endpoint}openai/deployments/${deploymentName}/chat/completions?api-version=${apiVersion}`;
   if (DEBUG) console.log('🌐 Calling Azure OpenAI API at:', apiUrl);
@@ -95,8 +95,7 @@ const callLLMService = async (prompt) => {
   try {
     const formattedPrompt = formatPromptForLLM(prompt);
     if (DEBUG) console.log('📝 Formatted prompt:', formattedPrompt);
-    
-    // Updated request format for chat completions API
+
     const requestBody = {
       messages: [
         {
@@ -110,10 +109,9 @@ const callLLMService = async (prompt) => {
       ],
       max_tokens: 800,
       temperature: 0.7
-      // Removed model_version parameter as it's not supported by the API
     };
     if (DEBUG) console.log('📦 Request payload:', requestBody);
-    
+
     console.log(`🔄 Making API request to ${apiUrl}`);
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -125,7 +123,7 @@ const callLLMService = async (prompt) => {
     });
 
     if (DEBUG) console.log(`📥 Response status: ${response.status} ${response.statusText}`);
-    
+
     if (!response.ok) {
       const errorText = await response.text();
       console.error('❌ Azure API error response:', errorText);
@@ -134,32 +132,27 @@ const callLLMService = async (prompt) => {
 
     const data = await response.json();
     if (DEBUG) console.log('📄 Azure API response data:', data);
-    
+
     if (!data.choices || data.choices.length === 0) {
       throw new Error('Empty response from Azure OpenAI API');
     }
-    
-    // Updated to extract content from chat completion format
+
     return data.choices[0].message.content;
   } catch (error) {
     console.error('❌ Error calling Azure OpenAI service:', error.message);
-    
-    // Check for network-related errors
+
     if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
       console.error('🔌 Network error detected. Check your internet connection.');
     }
-    
-    // Check for authentication errors
+
     if (error.message.includes('401') || error.message.includes('403')) {
       console.error('🔑 Authentication error. Your API key may be invalid or expired.');
     }
-    
-    // Check for specific Azure OpenAI error messages
+
     if (error.message.includes('model not found')) {
       console.error('🔍 Model not found. The deployment name may be incorrect.');
     }
-    
-    // Fall back to mock data based on the prompt content
+
     console.log('🔄 Falling back to mock data due to error');
     if (prompt.includes('to-read list')) {
       return mockToReadRecommendations;
