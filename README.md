@@ -125,7 +125,7 @@ We welcome contributions to make Very Good Reads even better! Here are some area
   - Implement caching for AI recommendations to reduce API costs
   - Add more recommendation types (by mood, by genre, by length)
   - Allow users to provide feedback on AI recommendations to improve future suggestions
-  - Add support for other AI providers (OpenAI, Claude, Gemini)
+  - Add support for other AI providers (OpenAI, Anthropic Claude, Google Gemini)
 
 ### Technical Improvements
 
