@@ -1,0 +1,206 @@
+/**
+ * Design Tokens
+ * =============
+ * Single source of truth for all design values.
+ * Components should reference these tokens, never raw values.
+ */
+
+:root {
+  /* ========================================
+     COLOR PALETTE
+     ======================================== */
+
+  /* Blue variants */
+  --blue-1: #DAF5F0;
+  --blue-2: #A7DBD8;
+  --blue-3: #87CEEB;
+  --blue-4: #69D2E7;
+
+  /* Green variants */
+  --green-1: #B5D2AD;
+  --green-2: #BAFCA2;
+  --green-3: #90EE90;
+  --green-4: #7FBC8C;
+
+  /* Yellow variants */
+  --yellow-1: #FDFD96;
+  --yellow-2: #FFD858;
+  --yellow-3: #F47D38;
+  --yellow-4: #E3A018;
+
+  /* Orange variants */
+  --orange-1: #F6D8B3;
+  --orange-2: #FFA07A;
+  --orange-3: #FF7A5C;
+  --orange-4: #FF6B6B;
+
+  /* Pink variants */
+  --pink-1: #FCDFFF;
+  --pink-2: #FFC0CB;
+  --pink-3: #FFB2EF;
+  --pink-4: #FF69B4;
+
+  /* Purple variants */
+  --purple-1: #E3DFF2;
+  --purple-2: #C4A1FF;
+  --purple-3: #A388EE;
+  --purple-4: #9723C9;
+
+  /* Neutrals */
+  --white: #ffffff;
+  --black: #000000;
+  --gray-1: #f5f5f5;
+  --gray-2: #e0e0e0;
+  --gray-3: #9e9e9e;
+  --gray-4: #616161;
+
+  /* ========================================
+     SEMANTIC COLORS
+     ======================================== */
+
+  /* Backgrounds */
+  --color-bg: var(--purple-1);
+  --color-surface: var(--white);
+  --color-surface-hover: var(--blue-1);
+  --color-surface-active: var(--yellow-2);
+
+  /* Text */
+  --color-text: var(--black);
+  --color-text-inverse: var(--white);
+  --color-text-muted: var(--gray-4);
+
+  /* Borders */
+  --color-border: var(--black);
+  --color-border-light: var(--white);
+
+  /* Accent colors */
+  --color-accent-primary: var(--purple-3);
+  --color-accent-primary-hover: var(--purple-4);
+  --color-accent-primary-muted: var(--purple-2);
+  --color-accent-secondary: var(--yellow-2);
+  --color-accent-secondary-hover: var(--yellow-3);
+  --color-accent-secondary-active: var(--yellow-4);
+
+  /* ========================================
+     SPACING SCALE
+     ======================================== */
+
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 8px;
+  --space-4: 10px;
+  --space-5: 12px;
+  --space-6: 16px;
+  --space-7: 20px;
+  --space-8: 24px;
+  --space-9: 32px;
+  --space-10: 40px;
+
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+
+  /* Font families */
+  --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --font-system: 'MS Sans Serif', Arial, sans-serif;
+
+  /* Font sizes */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+
+  /* Font weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-black: 900;
+
+  /* Line heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* Letter spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+
+  /* ========================================
+     BORDERS
+     ======================================== */
+
+  --border-thin: 1px solid var(--color-border);
+  --border-medium: 3px solid var(--color-border);
+  --border-thick: 4px solid var(--color-border);
+  --border-heavy: 5px solid var(--color-border);
+
+  /* Border radius (neo-brutalist = sharp edges) */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* ========================================
+     SHADOWS (neo-brutalist hard shadows)
+     ======================================== */
+
+  --shadow-none: none;
+  --shadow-sm: 4px 4px 0px var(--black);
+  --shadow-md: 8px 8px 0px var(--black);
+  --shadow-lg: 12px 12px 0px var(--black);
+  --shadow-xl: 14px 14px 0px var(--black);
+
+  /* ========================================
+     SIZING
+     ======================================== */
+
+  /* Component heights */
+  --height-control-sm: 28px;
+  --height-control-md: 36px;
+  --height-control-lg: 40px;
+  --height-taskbar: 48px;
+
+  /* Widths */
+  --width-button-min: 120px;
+  --width-button-max: 200px;
+  --width-window-min: 300px;
+
+  /* ========================================
+     Z-INDEX SCALE
+     ======================================== */
+
+  --z-base: 0;
+  --z-dropdown: 50;
+  --z-window: 100;
+  --z-modal: 200;
+  --z-popover: 300;
+  --z-tooltip: 400;
+  --z-taskbar: 1000;
+
+  /* ========================================
+     TRANSITIONS
+     ======================================== */
+
+  --duration-fast: 0.1s;
+  --duration-normal: 0.2s;
+  --duration-slow: 0.3s;
+
+  --ease-default: ease;
+  --ease-in-out: ease-in-out;
+
+  /* ========================================
+     BREAKPOINTS (for reference in JS/media queries)
+     ======================================== */
+
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+}

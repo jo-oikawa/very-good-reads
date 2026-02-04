@@ -6,6 +6,7 @@ export const WINDOW_TYPES = {
   CURRENT_READING: 'current-reading',
   RECORD_LIST: 'record-list',
   RECOMMENDATIONS: 'recommendations',
+  TIMELINE: 'timeline',
 };
 
 // Initial state for our windows
@@ -41,6 +42,14 @@ const initialState = {
       isOpen: false, // Start closed initially
       isMinimized: false,
       position: { x: 350, y: 100 },
+      zIndex: 0,
+    },
+    [WINDOW_TYPES.TIMELINE]: {
+      id: WINDOW_TYPES.TIMELINE,
+      title: 'Timeline',
+      isOpen: false,
+      isMinimized: false,
+      position: { x: 450, y: 120 },
       zIndex: 0,
     },
   },

@@ -2,13 +2,8 @@ import React from 'react';
 import { WINDOW_TYPES } from '../../context/WindowContext';
 import Taskbar from '../taskbar/Taskbar';
 import DesktopIcon from './DesktopIcon';
+import Icon from '../Icon/Icon';
 import './Desktop.css';
-
-// Import SVG icons
-import { ReactComponent as AddBookIcon } from '../../assets/icons/New.svg';
-import { ReactComponent as ReadingIcon } from '../../assets/icons/Currently.svg';
-import { ReactComponent as CollectionIcon } from '../../assets/icons/Collection.svg';
-import { ReactComponent as RecommendationsIcon } from '../../assets/icons/Recommended.svg';
 
 const Desktop = ({ children }) => {
   return (
@@ -19,22 +14,22 @@ const Desktop = ({ children }) => {
           <DesktopIcon 
             windowId={WINDOW_TYPES.ADD_RECORD}
             title="Add New"
-            icon={<AddBookIcon />}
+            icon={<Icon name="new-file" />}
           />
           <DesktopIcon 
             windowId={WINDOW_TYPES.CURRENT_READING}
             title="Currently"
-            icon={<ReadingIcon />}
+            icon={<Icon name="book" />}
           />
           <DesktopIcon 
             windowId={WINDOW_TYPES.RECORD_LIST}
             title="Collection"
-            icon={<CollectionIcon />}
+            icon={<Icon name="library" />}
           />
           <DesktopIcon 
             windowId={WINDOW_TYPES.RECOMMENDATIONS}
             title="Recommended"
-            icon={<RecommendationsIcon />}
+            icon={<Icon name="star-full" />}
           />
         </div>
         

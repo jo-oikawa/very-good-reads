@@ -1,20 +1,29 @@
-@import './styles/colors.css';
+/**
+ * Global Style Entry Point
+ * ========================
+ * Imports are ordered by specificity (ITCSS-inspired):
+ * 1. Tokens (design variables)
+ * 2. Base (reset + element defaults)
+ * 3. Themes (token overrides)
+ * 4. Utilities (low-specificity helpers)
+ *
+ * Component styles are colocated with components (will migrate to CSS Modules).
+ */
 
-body {
-  margin: 0;
-  font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* 1. Design tokens - all CSS custom properties */
+@import './styles/tokens/tokens.css';
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/* 2. Base - resets, typography, form defaults */
+@import './styles/base.css';
 
-/* Book title class for Instrument Serif */
-.book-title {
-  font-family: 'Instrument Serif', Georgia, serif;
-}
+/* 3. Themes - semantic color overrides */
+@import './styles/themes/light.css';
+@import './styles/themes/dark.css';
+
+/* 4. Utilities - spacing, layout helpers */
+@import './styles/utilities.css';
+
+/* Legacy: keep colors.css for backward compatibility during migration */
+/* Components still reference --purple-1, --yellow-2, etc. directly */
+/* These are now defined in tokens.css, so this import is no longer needed */
+/* @import './styles/colors.css'; */

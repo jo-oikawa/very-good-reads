@@ -1,0 +1,58 @@
+/* Icon Component Styles */
+.codicon {
+  font-size: inherit;
+  line-height: inherit;
+  vertical-align: middle;
+}
+
+/* Desktop Icon specific sizing */
+.desktop-icon-image .codicon {
+  font-size: 48px;
+  display: block;
+}
+
+/* Star icon specific styles */
+.star {
+  color: #c0c0c0;
+  font-size: 20px;
+  margin: 0 2px;
+}
+
+.star.filled {
+  color: #ffcc00;
+}
+
+.star.half {
+  color: #ffcc00;
+  position: relative;
+}
+
+.star.half::before {
+  content: '\eb52'; /* codicon-star-full */
+  position: absolute;
+  overflow: hidden;
+  width: 50%;
+  color: #ffcc00;
+}
+
+.star.empty {
+  color: #c0c0c0;
+}
+
+/* Star icon in recommendations */
+.star-icon {
+  color: #ffcc00;
+  font-size: 16px;
+  margin-left: 4px;
+}
+
+/* Book icon fallback */
+.book-icon {
+  width: 60px;
+  height: 80px;
+  font-size: 60px;
+  color: #000080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

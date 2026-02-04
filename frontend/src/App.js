@@ -6,9 +6,9 @@ import AddRecordWindow from './components/windows/AddRecordWindow';
 import CurrentReadingWindow from './components/windows/CurrentReadingWindow';
 import RecordListWindow from './components/windows/RecordListWindow';
 import RecommendationsWindow from './components/windows/RecommendationsWindow';
+import Timeline from './components/Timeline/Timeline';
 import Notification from './components/Notification/Notification';
-// Import the star SVG
-import { ReactComponent as StarIcon } from './assets/icons/star.svg';
+import Icon from './components/Icon/Icon';
 
 function App() {
   const [records, setRecords] = useState([]);
@@ -165,11 +165,11 @@ function App() {
     return Array(5).fill(0).map((_, i) => {
       // For each position, check if we should render a filled star, half star, or empty star
       if (i < Math.floor(rating)) {
-        return <StarIcon key={i} className="star filled" />;
+        return <Icon key={i} name="star-full" className="star filled" />;
       } else if (i === Math.floor(rating) && rating % 1) {
-        return <StarIcon key={i} className="star half" />;
+        return <Icon key={i} name="star-half" className="star half" />;
       } else {
-        return <StarIcon key={i} className="star empty" />;
+        return <Icon key={i} name="star-empty" className="star empty" />;
       }
     });
   };
@@ -256,23 +256,25 @@ function App() {
           
           {/* Current Reading Window */}
           <CurrentReadingWindow 
-            records={records} 
+            records={filteredRecords} 
             handleStatusChange={handleStatusChange} 
+            handleDelete={handleDelete}
             openReviewForm={openReviewForm}
+            renderStarRating={renderStarRating}
           />
           
           {/* Record List Window */}
           <RecordListWindow 
             records={filteredRecords}
+            handleStatusChange={handleStatusChange}
+            handleDelete={handleDelete}
+            openReviewForm={openReviewForm}
+            renderStarRating={renderStarRating}
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
             statusFilter={statusFilter}
             setStatusFilter={setStatusFilter}
             clearFilters={clearFilters}
-            handleDelete={handleDelete}
-            handleStatusChange={handleStatusChange}
-            openReviewForm={openReviewForm}
-            renderStarRating={renderStarRating}
           />
           
           {/* Recommendations Window */}
@@ -283,6 +285,9 @@ function App() {
             handleAddBook={handleSubmit}
             handleAddBookDirectly={handleAddBookDirectly}
           />
+          
+          {/* Timeline */}
+          <Timeline />
         </Desktop>
         
         {/* Review form modal */}
@@ -301,7 +306,7 @@ function App() {
                         className={reviewForm.stars >= star ? 'active' : ''}
                         onClick={() => handleStarRatingChange(star)}
                       >
-                        <StarIcon className="star-icon" />
+                        <Icon name="star-full" className="star-icon" />
                       </button>
                     ))}
                   </div>

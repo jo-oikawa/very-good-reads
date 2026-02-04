@@ -3,7 +3,7 @@ import Window from '../Window/Window';
 import { WINDOW_TYPES, useWindowContext } from '../../context/WindowContext';
 import { getRecommendations } from '../../utils/recommendationsAPI';
 import { fetchBookInfo, preloadBookCovers } from '../../utils/googleBooksAPI';
-import bookIcon from '../../assets/icons/book.svg';
+import Icon from '../Icon/Icon';
 import './RecommendationsWindow.css';  // Import the dedicated CSS file
 
 const RecommendationsWindow = ({ 
@@ -332,11 +332,9 @@ const RecommendationsWindow = ({
               className="book-cover"
             />
           ) : (
-            <img 
-              src={bookIcon}
-              alt="Book icon"
-              className="book-cover fallback"
-            />
+            <div className="book-cover fallback">
+              <Icon name="book" className="book-icon" />
+            </div>
           )}
         </div>
         

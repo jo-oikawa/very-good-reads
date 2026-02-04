@@ -9,7 +9,13 @@ const connectToDatabase = require('../db');
 router.post('/', async (req, res) => {
     const db = await connectToDatabase();
     const collection = db.collection('readingRecords');
-    const record = { ...req.body, status: req.body.status || 'to-read' }; // Default status to 'to-read'
+    const now = new Date().toISOString();
+    const record = { 
+        ...req.body, 
+        status: req.body.status || 'to-read', // Default status to 'to-read'
+        createdAt: now,
+        updatedAt: now
+    };
 
     try {
         const result = await collection.insertOne(record);

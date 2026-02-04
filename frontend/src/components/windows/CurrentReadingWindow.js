@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Window from '../Window/Window';
 import { WINDOW_TYPES } from '../../context/WindowContext';
 import { fetchBookInfo } from '../../utils/googleBooksAPI';
-import bookIcon from '../../assets/icons/book.svg';
+import Icon from '../Icon/Icon';
 import './CurrentReadingWindow.css';
 
 const CurrentReadingWindow = ({ records, handleStatusChange = () => {}, openReviewForm = () => {} }) => {
@@ -130,11 +130,9 @@ const CurrentReadingWindow = ({ records, handleStatusChange = () => {}, openRevi
                         loading="lazy"
                       />
                     ) : useFallbacks[book._id] ? (
-                      <img 
-                        src={bookIcon} 
-                        alt="Book icon" 
-                        className="book-cover fallback"
-                      />
+                      <div className="book-cover fallback">
+                        <Icon name="book" className="book-icon" />
+                      </div>
                     ) : (
                       <div className="loading-cover">Loading...</div>
                     )}

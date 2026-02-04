@@ -1,0 +1,29 @@
+/**
+ * Dark Theme
+ * ==========
+ * Override semantic color tokens for dark mode.
+ * Apply by setting data-theme="dark" on <html> or app root.
+ */
+
+:root[data-theme="dark"] {
+  /* Backgrounds */
+  --color-bg: #1a1a2e;
+  --color-surface: #16213e;
+  --color-surface-hover: #1f3460;
+  --color-surface-active: var(--yellow-4);
+
+  /* Text */
+  --color-text: #e6e6e6;
+  --color-text-inverse: #1a1a2e;
+  --color-text-muted: #9e9e9e;
+
+  /* Borders */
+  --color-border: #e6e6e6;
+  --color-border-light: #3a3a5c;
+
+  /* Neutrals (darker variants) */
+  --gray-1: #2a2a4a;
+  --gray-2: #3a3a5c;
+  --gray-3: #6a6a8c;
+  --gray-4: #9a9abc;
+}

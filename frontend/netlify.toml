@@ -1,0 +1,16 @@
+[build]
+base = ""
+dir = "build"
+command = "npm run build"
+
+[build.environment]
+NODE_VERSION = "18"
+
+[context.production.environment]
+NODE_ENV = "production"
+
+[context.deploy-preview]
+command = "npm run build"
+
+[context.branch-deploy]
+command = "npm run build"
