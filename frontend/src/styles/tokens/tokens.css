@@ -10,41 +10,41 @@
      COLOR PALETTE
      ======================================== */
 
-  /* Blue variants */
-  --blue-1: #DAF5F0;
-  --blue-2: #A7DBD8;
-  --blue-3: #87CEEB;
-  --blue-4: #69D2E7;
+  /* Blue variants - soft sky and sage tones */
+  --blue-1: #E8F4F2;
+  --blue-2: #C5DED9;
+  --blue-3: #A8CDD4;
+  --blue-4: #8BBFC9;
 
-  /* Green variants */
-  --green-1: #B5D2AD;
-  --green-2: #BAFCA2;
-  --green-3: #90EE90;
-  --green-4: #7FBC8C;
+  /* Green variants - muted sage and mint */
+  --green-1: #D4E4D1;
+  --green-2: #C2D9B8;
+  --green-3: #B0CEAA;
+  --green-4: #9ABF93;
 
-  /* Yellow variants */
-  --yellow-1: #FDFD96;
-  --yellow-2: #FFD858;
-  --yellow-3: #F47D38;
-  --yellow-4: #E3A018;
+  /* Yellow variants - soft butter and honey */
+  --yellow-1: #F9F5E3;
+  --yellow-2: #F0DDA4;
+  --yellow-3: #DEBA7A;
+  --yellow-4: #C9A66B;
 
-  /* Orange variants */
-  --orange-1: #F6D8B3;
-  --orange-2: #FFA07A;
-  --orange-3: #FF7A5C;
-  --orange-4: #FF6B6B;
+  /* Orange variants - soft peach and apricot */
+  --orange-1: #F8E8DD;
+  --orange-2: #EDCDB8;
+  --orange-3: #E0B39A;
+  --orange-4: #D19E87;
 
-  /* Pink variants */
-  --pink-1: #FCDFFF;
-  --pink-2: #FFC0CB;
-  --pink-3: #FFB2EF;
-  --pink-4: #FF69B4;
+  /* Pink variants - dusty rose and blush */
+  --pink-1: #F6E8F0;
+  --pink-2: #EACFD9;
+  --pink-3: #E0B8C9;
+  --pink-4: #CFA0B3;
 
-  /* Purple variants */
-  --purple-1: #E3DFF2;
-  --purple-2: #C4A1FF;
-  --purple-3: #A388EE;
-  --purple-4: #9723C9;
+  /* Purple variants - soft lavender and mauve */
+  --purple-1: #EDE8F4;
+  --purple-2: #D4C8E4;
+  --purple-3: #B8A7D1;
+  --purple-4: #9E8ABF;
 
   /* Neutrals */
   --white: #ffffff;
@@ -70,7 +70,7 @@
   --color-text-muted: var(--gray-4);
 
   /* Borders */
-  --color-border: var(--black);
+  --color-border: var(--gray-3);
   --color-border-light: var(--white);
 
   /* Accent colors */
@@ -148,14 +148,14 @@
   --radius-lg: 8px;
 
   /* ========================================
-     SHADOWS (neo-brutalist hard shadows)
+     SHADOWS (softened for gentler aesthetic)
      ======================================== */
 
   --shadow-none: none;
-  --shadow-sm: 4px 4px 0px var(--black);
-  --shadow-md: 8px 8px 0px var(--black);
-  --shadow-lg: 12px 12px 0px var(--black);
-  --shadow-xl: 14px 14px 0px var(--black);
+  --shadow-sm: 3px 3px 0px #9e9e9e;
+  --shadow-md: 6px 6px 0px #9e9e9e;
+  --shadow-lg: 9px 9px 0px #9e9e9e;
+  --shadow-xl: 12px 12px 0px #9e9e9e;
 
   /* ========================================
      SIZING
