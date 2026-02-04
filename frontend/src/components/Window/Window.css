@@ -34,7 +34,7 @@
 /* Window header */
 .window-header {
   height: 40px; /* Taller header */
-  background: var(--purple-3); /* Purple accent color for headers */
+  background: var(--green-3); /* Green accent color for headers */
   color: white;
   display: flex;
   justify-content: space-between;
@@ -50,13 +50,13 @@
 
 /* Active window header has bright accent color */
 .window-header-active {
-  background: var(--purple-4); /* Darker purple for active windows */
+  background: var(--green-4); /* Darker green for active windows */
   color: white;
 }
 
 /* Inactive window header */
 .window-header:not(.window-header-active) {
-  background: var(--purple-2); /* Lighter purple for inactive */
+  background: var(--green-2); /* Lighter green for inactive */
 }
 
 /* Window title */
