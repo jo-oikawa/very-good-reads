@@ -91,13 +91,16 @@ async function connectToDatabase() {
     console.log("Connected to MongoDB!");
     return client.db("very-good-reads-db");
   } catch (err) {
-    console.error("Failed to connect to database:", err);
-    console.error("Error details:", {
-      name: err.name,
-      message: err.message,
-      stack: err.stack,
-      reason: err.reason,
-    });
+    console.error("Failed to connect to database:", err.message);
+    // Only log detailed error info in development
+    if (process.env.NODE_ENV !== 'production') {
+      console.error("Error details:", {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+        reason: err.reason,
+      });
+    }
     // Fall back to memory DB so the app remains usable locally
     return createMemoryDB();
   }

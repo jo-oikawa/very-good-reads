@@ -26,7 +26,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 2px; /* Reduced from 10px to bring label closer to icon */
-  color: #000000; /* Black icons for contrast */
+  color: #000080; /* Navy blue icons */
   padding: 8px;
 }
 

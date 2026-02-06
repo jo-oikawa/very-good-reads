@@ -1,18 +1,43 @@
 const express = require('express');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const connectToDatabase = require('./db'); // Import the database connection function
 const readingRecordsRouter = require('./routes/readingRecords'); //Import the reading records router for CRUD operations
 
 const app = express();
 const PORT = process.env.PORT || 3001; // Changed from 3000 to 3001 to match frontend expectations
 
-// Middleware to parse JSON
-app.use(express.json());
+// Security middleware - adds various HTTP headers
+app.use(helmet());
 
-// Add CORS middleware
+// Rate limiting - protect against brute force and DDoS attacks
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: { error: 'Too many requests, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use('/api/', limiter);
+
+// Middleware to parse JSON with size limit
+app.use(express.json({ limit: '10kb' }));
+
+// CORS middleware - restrict to specific origins
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  process.env.FRONTEND_URL // Allow configurable frontend URL in production
+].filter(Boolean);
+
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
   
   if (req.method === 'OPTIONS') {
     return res.sendStatus(200);
