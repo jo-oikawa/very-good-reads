@@ -6,7 +6,6 @@ import AddRecordWindow from './components/windows/AddRecordWindow';
 import CurrentReadingWindow from './components/windows/CurrentReadingWindow';
 import RecordListWindow from './components/windows/RecordListWindow';
 import RecommendationsWindow from './components/windows/RecommendationsWindow';
-import Timeline from './components/Timeline/Timeline';
 import Notification from './components/Notification/Notification';
 import Icon from './components/Icon/Icon';
 
@@ -285,9 +284,6 @@ function App() {
             handleAddBook={handleSubmit}
             handleAddBookDirectly={handleAddBookDirectly}
           />
-          
-          {/* Timeline */}
-          <Timeline />
         </Desktop>
         
         {/* Review form modal */}
