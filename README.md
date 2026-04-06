@@ -8,6 +8,7 @@ This project includes several documentation files:
 - `README.md` (this file): Quick start guide and project overview
 - `specification_plan.md`: Detailed project requirements and scope
 - `development_plan.md`: Technical implementation details and timeline
+- `feedback_plan.md`: Structured template for collecting and analyzing user feedback
 
 ## Prerequisites
 
@@ -147,6 +148,20 @@ These features are planned for future releases based on user feedback and develo
 - [MongoDB Node.js Driver Documentation](https://www.mongodb.com/docs/drivers/node/current/)
 - [Azure OpenAI Documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
 - [React Documentation](https://reactjs.org/docs/getting-started.html)
+
+## Recommended Contribution Ideas
+
+Looking to contribute? Here are some great ways to get involved:
+
+- **Bug fixes**: Browse open issues labeled `bug` and submit a fix with a test.
+- **New features**: Pick up a feature from the [Planned Features](#planned-features) section or propose your own via a GitHub issue.
+- **Documentation**: Improve the README, add inline code comments, or write a guide for a new feature.
+- **Tests**: Add unit or integration tests to improve coverage for the backend API or frontend components.
+- **UI/UX improvements**: Suggest or implement design refinements that make the app more intuitive and accessible.
+- **Performance**: Profile the app and submit optimizations for database queries or frontend rendering.
+- **Accessibility**: Audit the frontend for WCAG compliance and open a PR with fixes.
+
+Before contributing, please open an issue to discuss your idea so we can coordinate and avoid duplicate work. When ready, fork the repo, create a feature branch, and submit a pull request with a clear description of your changes.
 
 ## Try it & share feedback
 
